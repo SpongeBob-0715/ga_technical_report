@@ -1,3 +1,220 @@
+\subsection{Dimension 1: Task completion rate and token efficiency}
+
+\subsubsection{Setup}
+\paragraph{Agents and Models.}
+The experiments compare a small set of representative agent systems and backbone models:
+\begin{itemize}
+    \item \textbf{Agents.} GenericAgent (GA), Claude Code, OpenClaw, and Codex.
+    \item \textbf{Models.} Claude Sonnet 4.6, Claude Opus 4.6, Minimax M2.7, and GPT-5.4.
+\end{itemize}
+
+
+\paragraph{Benchmark.}
+We evaluate the systems on three benchmarks that cover complementary task structures:
+\begin{itemize}
+    \item \textbf{SOP-Bench.} An industrial SOP-following benchmark with multi-step order-fulfillment tasks. Agents must follow explicit procedural constraints, invoke multiple tools in the correct order, and complete the full execution chain from verification to final fulfillment decisions.
+    \item \textbf{Lifelong AgentBench.} A sequential task benchmark designed to test continual capability accumulation. In the reported setting, the benchmark contains database-operation tasks with cross-task dependency, requiring the agent to maintain state, reuse prior discoveries, and complete tasks under strict execution order.
+    \item \textbf{RealFin-benchmark.} A financial-task benchmark with 20 realistic tasks spanning indicator screening, correlation analysis, volatility ranking, price-volume pattern discovery, and structured result generation. The benchmark emphasizes domain understanding, code execution stability, and correct end-to-end completion.
+\end{itemize}
+
+\paragraph{Evaluations.}
+Following the original experiment protocol:
+\begin{itemize}
+    \item \textbf{Accuracy.} The proportion of correctly solved tasks under each benchmark's verification protocol.
+    \item \textbf{Input / Output / Total Tokens.} The reported token-cost statistics for each agent setting.
+    \item \textbf{Token Efficiency.} Accuracy / (Total Tokens in Millions).
+\end{itemize}
+All systems are run on the same task sets with per-task execution and independently saved outputs.
+
+
+
+\subsubsection{Results}
+
+\input{tables/exp_d1_1}
+
+\textbf{GA maintains leading or near-leading task completion across different benchmarks.}
+This trend is consistent across SOP-Bench, Lifelong AgentBench, and RealFin-benchmark. On the Claude-based runs, GA achieves 100\% accuracy on both SOP-Bench and Lifelong AgentBench, matching the best result on SOP-Bench and outperforming all baselines on Lifelong AgentBench. A similar pattern is observed on RealFin-benchmark, where GA attains the highest accuracy of 65\%, exceeding Claude Code Opus and Codex (60\%), Claude Code Sonnet (55\%), and OpenClaw (35\%).
+
+\textbf{GA requires fewer tokens to complete tasks, especially in terms of input tokens.}
+On SOP-Bench, GA uses 2.02M input tokens, which is lower than OpenClaw (2.60M) but higher than Claude Code (1.23M), while still achieving 100\% accuracy. In contrast, on Lifelong AgentBench, GA uses 222k input tokens, significantly lower than Claude Code (800k) and OpenClaw (1.43M), while maintaining 100\% accuracy. A similar pattern is observed on RealFin-benchmark.
+
+\textbf{GA achieves the best trade-off between task completion and token cost across benchmarks.}
+On SOP-Bench, Claude Code shows a higher efficiency ratio only at the cost of reduced accuracy (85\% vs. 100\%), whereas GA maintains full completion. On Lifelong AgentBench, GA achieves both the highest accuracy and the highest efficiency ratio (4.15), outperforming Claude Code (0.92) and OpenClaw (0.48). On RealFin-benchmark, GA again provides the best trade-off, reaching 65\% accuracy with 114k total tokens, corresponding to an efficiency ratio of 5.70, compared to 2.31 for Claude Code Sonnet, 1.95 for Claude Code Opus, 3.04 for OpenClaw, and 0.67 for Codex.
+
+
+\subsection{Dimension 3: Self-Evolution Capability}
+\label{sec:self_evolution_capability}
+
+\subsubsection{Setup}
+\paragraph{Task and Setting.}
+We evaluate GA's self-evolution process in two complementary settings. The first is a nine-round longitudinal study on a LangChain GitHub research task that requires identifying the five most recently merged bug-related PRs, tracing their linked issues to extract the underlying modules, and verifying from the LangChain documentation whether these modules have troubleshooting guidance. The second is an eight-task web benchmark used to test whether the same SOP-driven efficiency gains transfer across task types. The longitudinal study exposes the full evolution trajectory from first execution to convergence, while the benchmark study tests whether the resulting efficiency pattern generalizes beyond a single workflow.
+
+\paragraph{Evolution Stages.}
+We find that GA's self-evolution process can be summarized into three recurring stages, each corresponding to a different level of experience compression and execution efficiency. We therefore evaluate the system's performance across these three stages.
+\begin{itemize}
+    \item \textbf{Stage 1: Natural-language execution.} GA first operates in an exploratory regime, where the task is solved mainly through in-context reasoning and trial-and-error interaction.
+    \item \textbf{Stage 2: SOP distillation.} The accumulated experience is then compressed into a textual SOP, which reduces repeated exploration but still requires runtime interpretation and task-specific adaptation.
+    \item \textbf{Stage 3: Code-based execution.} Finally, the verified workflow is codified into executable logic, so the agent can reuse the learned procedure with minimal LLM involvement.
+\end{itemize}
+\paragraph{Evaluations.}
+\begin{itemize}
+    \item \textbf{Time.} End-to-end wall-clock runtime for each execution.
+    \item \textbf{LLM Calls.} Total number of model invocations per run.
+    \item \textbf{Input / Output / Cache Tokens.} Token cost broken down into prompt input, model output, cache creation, and cache reading where available.
+    \item \textbf{Total Tokens.} Aggregate token cost per run.
+    \item \textbf{Reduction Ratio.} Relative decrease against the first execution in the longitudinal study, or against the no-SOP baseline in the cross-task benchmark.
+\end{itemize}
+
+\subsubsection{Iteration-Wise Efficiency Trajectory}
+
+\begin{table*}[htbp]
+\centering
+\caption{\textbf{Nine-round evolution trajectory on the LangChain GitHub research task.} The experiment starts from scratch in Round \#1, iteratively refines a textual SOP in Rounds \#2--\#5, and enters the codified execution regime in Rounds \#6--\#9.}
+\def\arraystretch{0.99}
+\setlength{\tabcolsep}{0.42em}
+\resizebox{1.0\linewidth}{!}{
+\begin{tabular}{l l c c c c c c c}
+\toprule
+\textbf{Round} & \textbf{Stage} & \textbf{Time} & \textbf{LLM Calls} & \textbf{Input} & \textbf{Output} & \textbf{Cache Create} & \textbf{Cache Read} & \textbf{Total} \\
+\midrule
+
+\#1 & Initial run & 7m30s & 32 & 15,581 & 7,647 & 15,600 & 183,375 & 222,203 \\
+\#2 & SOP optimization & 4m19s & 12 & 5,045 & 4,860 & 4,553 & 51,883 & 66,341 \\
+\#3 & SOP optimization & 2m53s & 8 & 2,538 & 4,598 & 3,155 & 39,534 & 49,825 \\
+\#4 & SOP optimization & 2m29s & 9 & 3,265 & 3,682 & 3,435 & 41,376 & 51,758 \\
+\#5 & SOP optimization & 2m50s & 7 & 2,568 & 3,276 & 2,424 & 27,268 & 35,536 \\
+\#6 & Codified SOP & 2m24s & 6 & 1,855 & 1,064 & 1,930 & 20,913 & 25,762 \\
+\#7 & Codified SOP & 1m41s & 5 & 1,931 & 1,126 & 1,708 & 18,249 & 23,014 \\
+\#8 & Codified SOP & 1m35s & 5 & 1,884 & 990 & 1,586 & 18,229 & 22,689 \\
+\#9 & Codified SOP & 1m38s & 5 & 1,323 & 994 & 1,659 & 19,034 & 23,010 \\
+
+\bottomrule
+\end{tabular}
+}
+\label{tab:self_evolution_rounds}
+\end{table*}
+
+\textbf{The nine-round trajectory shows a phase transition from high-entropy exploration to a stable low-cost execution regime.} Relative to Round \#1, the final execution in Round \#9 reduces runtime from 7m30s to 1m38s (78.2\%), LLM calls from 32 to 5 (84.4\%), and total tokens from 222,203 to 23,010 (89.6\%). The key pattern is not just the large first-to-last gap, but the structure of the transition itself. During the textual SOP stage, token cost follows a non-monotonic but downward path (66k $\rightarrow$ 50k $\rightarrow$ 52k $\rightarrow$ 36k), which suggests that SOP compression already removes most redundant exploration, while still paying an adaptation cost whenever the stored procedure must be aligned with newly encountered edge cases. Once the workflow is codified, the system enters a narrow convergence band of roughly 23k$\pm$1k tokens across Rounds \#6--\#9, indicating that execution has become predictable rather than exploratory.
+
+\textbf{Most of the efficiency gain comes from eliminating repeated reasoning cycles rather than merely shortening individual responses.} The dominant change is the collapse in call count, which removes entire understand--reason--generate loops from the execution trace. This is consistent with the token composition: cache-read tokens fall from 183,375 in Round \#1 to 19,034 in Round \#9, and input tokens fall from 15,581 to 1,323, showing that the agent no longer rebuilds large amounts of context at runtime. Per-call token load also drops substantially over the course of evolution, from 6,944 tok/call in Round \#1 to about 4.5k--4.6k tok/call in Rounds \#7--\#9, but this effect is secondary to the structural reduction in the number of calls. The larger implication is that textual SOPs already compress the search space, while code-level execution removes the remaining interpretation overhead and turns the learned workflow into a deterministic asset.
+
+\subsubsection{Cross-Task Efficiency Gains}
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.9\linewidth]{image/cross_task_convergence.png}
+\caption{\textbf{Cross-task token convergence across repeated runs for OpenClaw and GA.} Each panel corresponds to one benchmark task and plots total token consumption over the first, second, and third executions. GA shows a consistent ``cold start + rapid convergence'' pattern: token cost is typically highest on the first run, then quickly drops and stabilizes in later runs. In contrast, OpenClaw usually remains flat or unstable across repetitions, indicating that it continues to re-explore the task instead of reusing prior experience. The gap is especially large on long-horizon dependency tasks, where SOP reuse brings the strongest efficiency gains. The figure was generated from the benchmark data using \texttt{self-evo/plot\_cross\_task\_convergence.py}.}
+\label{fig:cross_task_convergence}
+\end{figure*}
+\textbf{The efficiency gains transfer across tasks rather than remaining confined to a single hand-optimized workflow.} On all eight benchmark tasks, GA consumes fewer tokens than the no-memory baseline, with savings ranging from 61.0\% to 92.4\% and an overall reduction of 79.3\%. This consistency matters more than any individual best case: it shows that SOP self-evolution is not just memorizing one task, but systematically converting prior successful trajectories into reusable execution shortcuts. The strongest gains appear in long-horizon tasks with state transfer and recovery (Category D, 92.0\%), where repeated failure handling and path search dominate the baseline cost. In those cases, SOP acts as path compression: once the verified route is stored, the agent can bypass most exploratory branches entirely.
+
+\textbf{GA exhibits a clear ``cold start + rapid convergence'' pattern across repeated executions of the same task.} Looking at the three runs of each benchmark task, GA shows the same internal trend: the first run has substantially higher token cost, while the second and third runs quickly converge to a stable low-cost regime. This indicates that even with SOP memory, the first execution still incurs an SOP adaptation cost, because the agent must map generalized SOP knowledge onto the concrete page structure and interaction flow of the current task instance. However, this adaptation happens only once. After the successful path is aligned with the environment, later executions can directly reuse that result and rapidly drop to a stable token level. By contrast, OpenClaw shows no comparable convergence pattern across its three runs. On B2, for example, token usage changes from 1,370k to 2,330k to 2,130k, which means the system keeps re-exploring rather than reusing prior experience. This distinction is important for deployment: GA pays a one-time adaptation cost on a new task, but its marginal cost quickly approaches zero, whereas the baseline remains expensive on every execution.
+
+\textbf{The benefit of SOP memory tends to increase with task complexity.} When the tasks are ordered by OpenClaw's average token consumption as a proxy for intrinsic task complexity, a positive relationship emerges between complexity and saving rate. High-complexity tasks with OC averages above 1,000k tokens, such as A1, B2, and D1, achieve an average saving of 83.5\%, while mid-complexity tasks average 72.5\%. Although D2 is low in absolute token cost, its 90.1\% saving rate is consistent with the same mechanism because it still contains long-horizon dependency structure. The broader implication is that SOP self-evolution becomes more valuable as tasks require more multi-step reasoning, navigation, and recovery from branching execution paths: in simple tasks it is helpful, but in complex tasks it becomes structurally decisive.
+
+\subsection{Dimension 4: Tool-use efficiency}
+\label{sec:dimension4_tool_use_efficiency}
+
+\subsubsection{Setup}
+\paragraph{Baseline.}
+All compared systems use the same backbone model, Claude Sonnet 4.6. We evaluate three representative tool-use designs:
+\begin{itemize}
+    \item \textbf{GA.} A minimal atomic-tool design that relies on a small set of general-purpose tools and solves downstream tasks through tool composition.
+    \item \textbf{Claude Code.} A strong baseline with a richer specialized tool ecosystem, used to test whether GA can match specialized tool capability without relying on tool-name alignment.
+    \item \textbf{OpenClaw.} A multi-tool agent with several specialized or environment-dependent tool capabilities, used to compare tool-use efficiency and stability under a less minimal design.
+\end{itemize}
+
+\paragraph{Basic Tool Alignment.}
+We align the systems at the capability level rather than at the tool-name level. The first column defines the target capability category, and the remaining three columns list the corresponding tool or mechanism used by each system to realize that capability.
+\begin{table*}[htbp]
+\centering
+\caption{\textbf{Capability-level alignment of the basic tooling environment.} Each row maps one capability category to the corresponding tool in Claude Code, OpenClaw, and GA.}
+\def\arraystretch{0.99}
+\setlength{\tabcolsep}{0.42em}
+\resizebox{1.0\linewidth}{!}{
+\begin{tabular}{llll}
+\toprule
+\textbf{Capability Category} & \multicolumn{3}{c}{\textbf{Corresponding Tool / Mechanism}} \\
+\cmidrule(lr){2-4}
+ & \textbf{Claude Code} & \textbf{OpenClaw} & \textbf{GA} \\
+\midrule
+Code execution & BashTool & exec / process / nodes & code\_run \\
+File reading & FileReadTool & read & file\_read \\
+File writing & FileWriteTool & write & file\_write \\
+Local file editing & FileEditTool & write / patch-like editing & file\_patch \\
+Web reading  & WebFetchTool / browser read & browser base reading & web\_scan \\
+Web interaction & WebBrowserTool / browser actions & browser interaction & web\_execute\_js \\
+Working memory & TodoWriteTool / BriefTool & session history / status-like ability & update\_working\_checkpoint \\
+\bottomrule
+\end{tabular}
+}
+\label{tab:tooluse_basic_alignment}
+\end{table*}
+
+\paragraph{Benchmark.}
+The benchmark contains two complementary task groups:
+\begin{itemize}
+    \item \textbf{Simple tool-generalization tasks.} These tasks test whether baseline specialized tool capabilities can be reproduced through GA's atomic-tool composition. The reported main set contains six Claude-Code-oriented tasks and five OpenClaw-oriented tasks whose intended baseline capability match is stable.
+    \item \textbf{Long-horizon complex tasks.} These tasks test whether the same minimal tool design remains effective on realistic multi-step workflows, including document generation, SQL query generation, experiment analysis, procurement decision-making, and paper-reproduction feasibility analysis.
+\end{itemize}
+
+\paragraph{Metrics.}
+\begin{itemize}
+    \item \textbf{Task Success.} Whether the task passes evaluation.
+    \item \textbf{Task Completion Score.} Degree of completion on a 0--1 scale.
+    \item \textbf{Request Count.} Number of agent--model interaction requests.
+    \item \textbf{Tool Call Count.} Number of tool invocations.
+    \item \textbf{Distinct Tool Count.} Number of different tools used in a task.
+    \item \textbf{Distinct Capability Count.} Number of different capability categories exercised in a task.
+    \item \textbf{Accounted Tokens.} Unified token cost defined as input + output + cache-read + cache-write tokens.
+\end{itemize}
+
+\subsubsection{Atomic Tool Generalization}
+
+\begin{table*}[htbp]
+\centering
+\caption{\textbf{Aggregated results on long-horizon complex tasks.} This table reports the average outcomes over the long-horizon task set rather than expanding into per-task detail.}
+\def\arraystretch{0.99}
+\setlength{\tabcolsep}{0.42em}
+\resizebox{1.0\linewidth}{!}{
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Agent} & \textbf{\#Tasks} & \textbf{Success} & \textbf{Accounted Tokens} & \textbf{Time (s)} & \textbf{Requests} & \textbf{Tool Calls} & \textbf{Distinct Tools / Caps.} \\
+\midrule
+Claude Code & 5 & 100.0\% & 537,413 & 320.8 & 32.6 & 22.6 & 4.4 / 3.8 \\
+GA & 5 & 100.0\% & 188,829 & 220.8 & 11.0 & 12.8 & 3.6 / 3.6 \\
+OpenClaw & 5 & 80.0\% & 633,101 & 183.1 & 15.0 & 16.6 & 4.2 / 3.2 \\
+\bottomrule
+\end{tabular}
+}
+\label{tab:tooluse_long_horizon}
+\end{table*}
+
+\textbf{GA can solve complex long-horizon tasks through compositions of atomic tools rather than through a richer specialized tool inventory.} In Table~\ref{tab:tooluse_long_horizon}, GA reaches 100\% success on the five long-horizon tasks, matching Claude Code and outperforming OpenClaw, which falls to 80\%. This shows that a minimal tool set does not weaken capability reachability when the tools are composable in the right way. We provide more detailed empirical analyses of concrete atomic-tool compositions in the appendix, where simpler replacement cases offer additional evidence for the same capability-generalization claim.
+
+\textbf{GA reduces token overhead while preserving task performance.} Although it matches Claude Code on success, GA uses only 188,829 accounted tokens, which is 35.1\% of Claude Code's 537,413 and 29.8\% of OpenClaw's 633,101. The same pattern appears in the interaction trace: GA reduces requests from 32.6 to 11.0 and tool calls from 22.6 to 12.8 relative to Claude Code, while OpenClaw remains both less stable and more expensive. The result indicates that GA's advantage comes from lower context and tool-process overhead, not from sacrificing quality.
+
+
+
+\subsubsection{Dimension-Wise Tool Efficiency Comparison}
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.98\linewidth]{image/dimension4_radar.png}
+\caption{\textbf{Dimension-wise radar comparison of tool-use efficiency.} The four panels correspond to ambiguity resolution, long-chain composition, constrained planning, and atomic-tool generalization. Each radar chart compares Claude Code, OpenClaw, and GA on success, quality score, token cost, request count, and tool-call count. Token, request, and tool-call axes are inverted so that larger area consistently indicates better overall efficiency.}
+\label{fig:tooluse_dimensionwise_radar}
+\end{figure*}
+
+\textbf{The minimal tool design remains effective across different task types.} GA is the most balanced system across the four dimensions: it preserves strong task quality while keeping token, request, and tool-call overhead low. Claude Code behaves like a high-quality but high-overhead baseline, since it usually maintains success and quality but pays a larger cost through longer interaction traces and heavier tool usage. OpenClaw shows a different profile: some efficiency axes remain locally competitive, but its overall shape becomes less stable on the harder dimensions because success and quality begin to drop. Compared with both baselines, GA combines the stable quality profile of a strong system with a more efficient interaction pattern, which suggests that its advantage comes from disciplined tool abstraction and reusable capability composition rather than from exposing a larger number of specialized tools.
+
+
+
+% \paragraph{Recommended Figure Design.}
+% A grouped bar chart is sufficient for this part. The x-axis should list the eight task IDs, and the y-axis should show token reduction ratio, defined as $(\mathrm{OC\ Avg.}-\mathrm{GA\ Avg.})/\mathrm{OC\ Avg.}$. Bars can be color-coded by task category so that the reader can immediately compare category-level consistency while still seeing task-level variation. The caption should clarify that higher values are better, that the comparison is between the no-SOP baseline and SOP-enabled GA, and that the overall average saving is 79.3\%.
+
+% \paragraph{Figure Insight.}
+% The figure should make three patterns immediately visible: first, the gain is positive on every task; second, long-horizon dependency tasks produce the largest improvements, reaching about 92\%; and third, open-ended exploration tasks still improve, but by a smaller margin, around 67\% on average. This visual presentation is enough for the cross-task part, since the role of this subsection is to establish transferability rather than to repeat the full underlying benchmark table.
+
+
 
 \subsection{Experimental Setup}
 \label{sec:exp_setup}
