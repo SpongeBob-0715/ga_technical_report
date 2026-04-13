@@ -7,8 +7,7 @@ These requirements give rise to two fundamental challenges.
 The second challenge is \textbf{how to enable effective continual self-evolution}.
 Without mechanisms for distilling experience, agents fail to improve from repeated interactions in long-horizon environments.
 They repeatedly fall into similar failure states, leading to unnecessary token consumption without capability gains.
-As a result, the agent system enters a stagnation loop where performance remains unchanged despite continued interaction.
-
+Therefore, the agent system enters a stagnation loop where performance remains unchanged despite continued interaction.
 
 To this end, we propose \textbf{GenericAgent (GA)}, a self-evolving LLM agent system built around a fundamental principle: \textbf{maximizing contextual information density}. 
 The core view is that agent performance is not determined by context length alone, but by how much decision-relevant information is introduced, maintained, and updated within the limited context budget.
@@ -23,7 +22,6 @@ Together, these mechanisms continuously reshape the context from a passive accum
 We evaluate GA at both the task and system levels. 
 Across multiple benchmarks, GA achieves strong task completion performance while consistently reaching a superior trade-off between completion and token cost. 
 Beyond performance alone, GA demonstrates systematic efficiency gains under repeated execution, as interaction traces are progressively distilled into reusable SOPs and code. 
-This behavior is enabled by its core components.
 
 Our main contributions are as follows:
 \begin{itemize}[leftmargin=*]
