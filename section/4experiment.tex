@@ -12,7 +12,7 @@ In this section, we evaluate GA from five complementary perspectives.
 We compare four representative agent systems, including GA, Claude Code, OpenClaw, and Codex. The backbone models include Claude Sonnet 4.6, Claude Opus 4.6, Minimax M2.7, and GPT-5.4.
 
 \paragraph{Benchmark.}
-We evaluate the systems on three complementary benchmarks. (1) \textbf{SOP-Bench} tests multi-step SOP execution. (2) \textbf{Lifelong AgentBench} tests sequential tasks with cross-task dependency. (3) \textbf{RealFin-benchmark} tests realistic financial tasks that require domain understanding and reliable execution.
+We evaluate the systems on three complementary benchmarks. (1) \textbf{SOP-Bench}~\citep{sopbench} tests multi-step SOP execution. (2) \textbf{Lifelong AgentBench} tests sequential tasks with cross-task dependency. (3) \textbf{RealFin-benchmark} tests realistic financial tasks that require domain understanding and reliable execution.
 
 \subsubsection{Results}
 
@@ -99,8 +99,9 @@ Once the workflow is codified, the system enters a narrow convergence band of ro
 All compared systems use the same backbone model, Claude Sonnet 4.6. We evaluate three representative tool-use designs. (1) \textbf{GA}, which uses a minimal atomic-tool design based on a small set of general-purpose tools. (2) \textbf{Claude Code}, which serves as a strong baseline with a richer specialized tool ecosystem. (3) \textbf{OpenClaw}, which represents a less minimal multi-tool design with several specialized or environment-dependent capabilities.
 
 \paragraph{Tool.}
-Table~\ref{tab:tool_inventory_overview} first gives a source-level inventory overview. Claude Code exposes 53 built-in tools at the source level (20 base tools and 33 conditional tools), while OpenClaw provides 18 source-level tool factories, with the runtime-visible set further varying by plugin injection and environment configuration. GA does not attempt to reproduce these full inventories one by one. Instead, it keeps only a small set of core atomic tools that cover the capabilities most frequently required in our evaluation tasks, and each of these capabilities has a clear prototype in both Claude Code and OpenClaw; a more detailed capability-level alignment is provided in Appendix~\ref{app:atomic_tool_alignment} (Table~\ref{tab:appendix_tool_alignment}).
 \input{tables/tool_inventory_overview}
+Table~\ref{tab:tool_inventory_overview} first gives a source-level inventory overview. Claude Code exposes 53 built-in tools at the source level (20 base tools and 33 conditional tools), while OpenClaw provides 18 source-level tool factories, with the runtime-visible set further varying by plugin injection and environment configuration. GA does not attempt to reproduce these full inventories one by one. Instead, it keeps only a small set of core atomic tools that cover the capabilities most frequently required in our evaluation tasks, and each of these capabilities has a clear prototype in both Claude Code and OpenClaw; a more detailed capability-level alignment is provided in Appendix~\ref{app:atomic_tool_alignment} (Table~\ref{tab:appendix_tool_alignment}).
+
 
 \paragraph{Benchmark.}
 The benchmark contains two complementary task groups. (1) \textbf{Simple tool-generalization tasks}, which test whether baseline specialized tool capabilities can be reproduced through GA's atomic-tool composition. (2) \textbf{Long-horizon complex tasks}, which test whether the same minimal tool design remains effective on realistic multi-step workflows.
@@ -188,7 +189,7 @@ The other three settings are
 (1) No-Memory, which provides no SOP or external memory and relies only on the task input and tool descriptions, 
 (2) Full-Memory, which uses the complete SOP as external knowledge, and 
 (3) Redundant-Memory, which extends condensed memory with background descriptions, definitions, and weakly relevant information in order to test whether extra content brings additional benefit.
-The evaluation is conducted on the dangerous goods subset of SOP-Bench. %% 这里需要引用 SOP-Bench 
+The evaluation is conducted on the dangerous goods subset of SOP-Bench~\citep{sopbench}.
 We use Task Success Rate (TSR) to measure behavioral performance and Memory Size to measure contextual cost, and we further compare the performance gain achieved per unit of token cost across different memory settings.
 
 
@@ -223,7 +224,7 @@ We use F1 to measure the correctness and completeness of factual content, and BL
 
 \begin{table}[htbp]
 \centering
-\caption{Long-term factual memory evaluation on Locomo10. GA outperforms embedding-based systems without using external retrieval.}
+\caption{Long-term factual memory evaluation on LoCoMo. GA outperforms embedding-based systems without using external retrieval.}
 \label{tab:long_term_memory}
 \begin{tabular}{lcccccccc}
 \toprule
