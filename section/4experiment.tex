@@ -78,7 +78,7 @@ Once the workflow is codified, the system enters a narrow convergence band of ro
 
 
 \subsubsection{Cross-Task Efficiency Gains}
-\begin{figure*}[htbp]
+\begin{figure*}[t]
 \centering
 \includegraphics[width=0.99\linewidth]{image/cross_task_convergence.pdf}
 \caption{\textbf{Cross-task token convergence across repeated runs for OpenClaw and GA.} Each panel corresponds to one benchmark task and plots total token consumption over the first, second, and third executions.}
@@ -247,8 +247,6 @@ Overall, these results show that long term factual memory can be achieved throug
 
 
 \subsubsection{Context Explosion Prevention}
-
-
 To evaluate whether GA can prevent memory explosion under long term use and continuous skill expansion, we compare GA, Claude Code, CodeX, and OpenClaw after installing 20 skills for each agent and using them intensively over time. 
 We then issue a minimal request ``Hello'' and measure the Full prompt length of each agent to assess how well its memory system controls context growth after prolonged use.
 
