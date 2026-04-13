@@ -34,7 +34,7 @@ On SOP-Bench, Claude Code shows a higher efficiency ratio only at the cost of re
 \subsubsection{Setup}
 
 \paragraph{Task and Setting.}
-We evaluate GA's self-evolution process in two complementary settings. The first is a nine-round longitudinal study on a LangChain GitHub research task. The second is an eight-task web benchmark used to test whether the same efficiency gains transfer across task types. The longitudinal study reveals the full trajectory from first execution to convergence, while the benchmark study tests whether the same pattern generalizes beyond a single workflow.
+We evaluate GA's self-evolution process in two complementary settings. The first is a nine-round longitudinal study where GA repeatedly performs similar GitHub research tasks. Each round operates on a different task instance, allowing us to observe how accumulated experience translates into efficiency gains across structurally similar workflows. The second is an eight-task web benchmark used to test whether the same efficiency gains transfer across task types. The longitudinal study reveals the full trajectory from first execution to convergence, while the benchmark study tests whether the same pattern generalizes beyond a single workflow.
 
 \paragraph{Evolution Stages.}
 We summarize GA's self-evolution into three stages. \textbf{Stage 1: Natural-language execution}, where GA solves the task mainly through in-context reasoning and trial-and-error interaction. \textbf{Stage 2: SOP distillation}, where accumulated experience is compressed into a textual SOP. \textbf{Stage 3: Code-based execution}, where the verified workflow is further converted into executable logic.
@@ -43,7 +43,7 @@ We summarize GA's self-evolution into three stages. \textbf{Stage 1: Natural-lan
 
 \begin{table*}[t]
 \centering
-\caption{\textbf{Nine-round evolution trajectory on the LangChain GitHub research task.} The experiment starts from scratch in Round \#1, iteratively refines a textual SOP in Rounds \#2--\#5, and enters the codified execution regime in Rounds \#6--\#9. Reduction Ratio measures relative decrease against the first run or the no-SOP baseline.}
+\caption{\textbf{Nine-round evolution trajectory on similar GitHub research tasks.} The experiment starts from scratch in Round \#1, iteratively refines a textual SOP in Rounds \#2--\#5, and enters the codified execution regime in Rounds \#6--\#9. Reduction Ratio measures relative decrease against the first run or the no-SOP baseline.}
 \def\arraystretch{0.99}
 \setlength{\tabcolsep}{0.42em}
 \resizebox{1.0\linewidth}{!}{
