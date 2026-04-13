@@ -70,12 +70,7 @@
 %     urlcolor={blue!80!black}
 % }
 \usepackage{hyperref}
-% \hypersetup{
-%     colorlinks,
-%     linkcolor={blue!80!black},
-%     citecolor={blue!80!black},
-%     urlcolor={blue!80!black}
-% }
+% hypersetup moved after small_blue color definition below
 \usepackage{url}
 \usepackage{amssymb}
 \usepackage{pifont} 
@@ -120,6 +115,13 @@
 \definecolor{small_blue}{RGB}{27, 63, 125}
 \definecolor{small_origin}{RGB}{94, 41, 16}
 \definecolor{mypink}{HTML}{D92879}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={small_blue},
+    citecolor={small_blue},
+    urlcolor={small_blue}
+}
 
 \definecolor{light_purple}{RGB}{235,236,242}
 \newcommand{\bg}[1]{\cellcolor{light_purple}{#1}} % 数据单元格背景色
