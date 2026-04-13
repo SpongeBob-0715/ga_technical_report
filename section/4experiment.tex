@@ -41,7 +41,7 @@ We summarize GA's self-evolution into three stages. \textbf{Stage 1: Natural-lan
 
 \subsubsection{Iteration-Wise Efficiency Trajectory}
 
-\begin{table*}[htbp]
+\begin{table*}[t]
 \centering
 \caption{\textbf{Nine-round evolution trajectory on the LangChain GitHub research task.} The experiment starts from scratch in Round \#1, iteratively refines a textual SOP in Rounds \#2--\#5, and enters the codified execution regime in Rounds \#6--\#9. Reduction Ratio measures relative decrease against the first run or the no-SOP baseline.}
 \def\arraystretch{0.99}
@@ -108,7 +108,7 @@ The benchmark contains two complementary task groups. (1) \textbf{Simple tool-ge
 
 \subsubsection{Atomic Tool Generalization}
 
-\begin{table*}[htbp]
+\begin{table*}[t]
 \centering
 \caption{\textbf{Aggregated results on long-horizon complex tasks.} This table reports the average outcomes over the long-horizon task set rather than expanding into per-task detail.}
 \def\arraystretch{0.99}
@@ -133,7 +133,7 @@ OpenClaw & 5 & 80.0\% & 633,101 & 183.1 & 15.0 & 16.6 & 4.2 / 3.2 \\
 
 \subsubsection{Tool Usage Distribution}
 
-\begin{figure*}[htbp]
+\begin{figure*}[t]
 \centering
 \includegraphics[width=0.9\linewidth]{image/pie.pdf}
 \caption{\textbf{Tool usage distribution across Claude Code, OpenClaw, and GA.} Each donut chart summarizes the proportion of tool calls attributed to each major tool category in the corresponding system.}
@@ -144,7 +144,7 @@ OpenClaw & 5 & 80.0\% & 633,101 & 183.1 & 15.0 & 16.6 & 4.2 / 3.2 \\
 
 \subsubsection{Dimension-Wise Tool Efficiency Comparison}
 
-\begin{figure*}[htbp]
+\begin{figure*}[t]
 \centering
 \includegraphics[width=0.98\linewidth]{image/dimension4_radar.pdf}
 \caption{\textbf{Dimension-wise radar comparison of tool-use efficiency.} The four panels correspond to ambiguity resolution, long-chain composition, constrained planning, and atomic-tool generalization. Each radar chart compares Claude Code, OpenClaw, and GA on success, quality score, token cost, request count, and tool-call count. Token, request, and tool-call axes are inverted so that larger area consistently indicates better overall efficiency.}
@@ -169,7 +169,7 @@ To this end, we compare CodeX, Claude Code, OpenClaw, and GA under the gpt-5.4.
 Each experimental run consists of downloading five different datasets from HuggingFace. 
 To avoid contamination from residual context, every download task is conducted in a fresh session. 
 
-\begin{figure*}[htbp]
+\begin{figure*}[t]
 \centering
 \includegraphics[width=0.9\linewidth]{image/memory.pdf}
 \caption{Operation time and token consumption across five repeated runs for different agents. While the baseline agents remain relatively stable over time, GA shows a clear efficiency convergence pattern, with both runtime and token cost decreasing substantially as task experience is accumulated and distilled into reusable memory.}
@@ -193,7 +193,7 @@ The evaluation is conducted on the dangerous goods subset of SOP-Bench~\citep{so
 We use Task Success Rate (TSR) to measure behavioral performance and Memory Size to measure contextual cost, and we further compare the performance gain achieved per unit of token cost across different memory settings.
 
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
 \caption{Memory ablation on SOP-Bench dangerous\_goods. Condensed memory achieves the best cost-effectiveness.}
 \label{tab:memory_ablation}
@@ -222,7 +222,7 @@ All methods use gpt5.4, and for the embedding based methods we adopt text-embedd
 The evaluation is conducted on the first subset of LoCoMo~\citep{locomo}, with Category 5 summary tasks removed to avoid interference from summarization ability.
 We use F1 to measure the correctness and completeness of factual content, and BLEU-1 to measure the lexical similarity between the generated answer and the reference answer.
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
 \caption{Long-term factual memory evaluation on LoCoMo. GA outperforms embedding-based systems without using external retrieval.}
 \label{tab:long_term_memory}
@@ -252,7 +252,7 @@ Overall, these results show that long term factual memory can be achieved throug
 To evaluate whether GA can prevent memory explosion under long term use and continuous skill expansion, we compare GA, Claude Code, CodeX, and OpenClaw after installing 20 skills for each agent and using them intensively over time. 
 We then issue a minimal request ``Hello'' and measure the Full prompt length of each agent to assess how well its memory system controls context growth after prolonged use.
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
 \caption{Full prompt length after installing 20 skills and intensive usage, measured on a minimal input. GA prevents context explosion.}
 \label{tab:context_explosion}
@@ -288,7 +288,7 @@ We use three task sets.
 For the direct comparison with OpenClaw, we use a 22 task subset of Custom Tasks and score each task on a 0 to 3 scale through manual review with GPT-5.4 assisted judgment. 
 Both GA and OpenClaw use the same underlying model, claude-opus-4-6, in this head to head comparison.
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
 \small
 \caption{Benchmarks and evaluation settings for web browsing capability.}
@@ -341,13 +341,3 @@ Table~\ref{tab:web_browsing_vs_openclaw} shows that GA achieves a higher average
 
 \textbf{GA is more stable than OpenClaw on complex web pages because its browser tools separate lightweight perception from precise execution.}
 Although OpenClaw has a slightly higher full score rate of \texttt{31.8\%}, its zero score rate is much higher at \texttt{27.3\%}, compared with only \texttt{4.5\%} for GA, as shown in Table~\ref{tab:web_browsing_vs_openclaw}. This result indicates that OpenClaw is more polarized, whereas GA maintains a stronger lower bound by combining \texttt{web\_scan} for compressed page perception with \texttt{web\_execute\_js} for precise DOM level interaction and structured execution feedback.
-
-% \subsection{Summary}
-% \label{sec:exp_summary}
-
-% In this section, we evaluate GA from five complementary perspectives.
-% 1) The task completion and token efficiency experiments show that GA maintains leading or near-leading accuracy while achieving the best overall cost-performance trade-off across benchmarks.
-% 2) The self-evolution experiments show that GA can compress successful trajectories into reusable SOPs and executable routines, leading to rapid convergence in time, calls, and token usage.
-% 3) The tool-use efficiency experiments show that a minimal atomic-tool design can match or exceed richer tool ecosystems with substantially lower interaction overhead.
-% 4) The memory experiments show that selective and on-demand memory improves repeated-use efficiency, supports long-term fact retention, and avoids context explosion.
-% 5) The web browsing experiments show that GA combines lightweight perception with precise execution, enabling better task quality, efficiency, and stability than OpenClaw on real web tasks.
