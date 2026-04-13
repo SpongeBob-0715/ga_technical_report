@@ -12,7 +12,7 @@ In this section, we evaluate GA from five complementary perspectives.
 We compare four representative agent systems, including GA, Claude Code, OpenClaw, and Codex. The backbone models include Claude Sonnet 4.6, Claude Opus 4.6, Minimax M2.7, and GPT-5.4.
 
 \paragraph{Benchmark.}
-We evaluate the systems on three complementary benchmarks. (1) \textbf{SOP-Bench} tests multi-step SOP execution. (2) \textbf{Lifelong AgentBench} tests sequential tasks with cross-task dependency. (3) \textbf{RealFin-benchmark} tests realistic financial tasks that require domain understanding and reliable execution.
+We evaluate the systems on three complementary benchmarks. (1) \textbf{SOP-Bench}~\citep{sopbench} tests multi-step SOP execution. (2) \textbf{Lifelong AgentBench} tests sequential tasks with cross-task dependency. (3) \textbf{RealFin-benchmark} tests realistic financial tasks that require domain understanding and reliable execution.
 
 \subsubsection{Results}
 
@@ -202,7 +202,7 @@ The other three settings are
 (1) No-Memory, which provides no SOP or external memory and relies only on the task input and tool descriptions, 
 (2) Full-Memory, which uses the complete SOP as external knowledge, and 
 (3) Redundant-Memory, which extends condensed memory with background descriptions, definitions, and weakly relevant information in order to test whether extra content brings additional benefit.
-The evaluation is conducted on the dangerous goods subset of SOP-Bench. %% 这里需要引用 SOP-Bench 
+The evaluation is conducted on the dangerous goods subset of SOP-Bench~\citep{sopbench}.
 We use Task Success Rate (TSR) to measure behavioral performance and Memory Size to measure contextual cost, and we further compare the performance gain achieved per unit of token cost across different memory settings.
 
 
@@ -237,7 +237,7 @@ We use F1 to measure the correctness and completeness of factual content, and BL
 
 \begin{table}[htbp]
 \centering
-\caption{Long-term factual memory evaluation on Locomo10. GA outperforms embedding-based systems without using external retrieval.}
+\caption{Long-term factual memory evaluation on LoCoMo. GA outperforms embedding-based systems without using external retrieval.}
 \label{tab:long_term_memory}
 \begin{tabular}{lcccccccc}
 \toprule
