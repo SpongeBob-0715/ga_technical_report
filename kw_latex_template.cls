@@ -336,7 +336,7 @@
       \begin{minipage}[c]{0.12\textwidth}
         \raggedleft
         \includegraphics[height=24mm]{seed/ga_logo_new.png}
-      \end{minipage}\hspace{0.6em}
+      \end{minipage}\hspace{0.8em}
       \begin{minipage}[c]{0.84\textwidth}
         \raggedright
         \titlelist\par
