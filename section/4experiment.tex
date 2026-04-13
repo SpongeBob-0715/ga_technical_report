@@ -285,6 +285,8 @@ Both GA and OpenClaw use claude-opus-4-6 as the backbone model.
 
 \subsubsection{Results}
 
+As shown in Table~\ref{tab:web_browsing_results}, GA outperforms OpenClaw across all three benchmarks while consuming significantly fewer tokens. On WebCanvas, GA achieves 0.834 score with 0.18M tokens versus OpenClaw's 0.722 score with 0.71M tokens. On BrowseComp-ZH, GA reaches 0.60 accuracy compared to OpenClaw's 0.20, using 0.47M versus 1.31M tokens. On Custom Tasks, GA scores 0.577 versus 0.50, winning 10 tasks against 6, while using only 0.26M tokens compared to 0.76M for OpenClaw.
+
 \begin{table}[htbp]
 \centering
 \small
@@ -302,7 +304,5 @@ Custom Tasks & 22 & Human + LLM & \textbf{0.577} & 0.50 & \textbf{0.26} & 0.76 \
 \end{tabular}
 \label{tab:web_browsing_results}
 \end{table}
-
-As shown in Table~\ref{tab:web_browsing_results}, GA outperforms OpenClaw across all three benchmarks while consuming significantly fewer tokens. On WebCanvas, GA achieves 0.834 score with 0.18M tokens versus OpenClaw's 0.722 score with 0.71M tokens. On BrowseComp-ZH, GA reaches 0.60 accuracy compared to OpenClaw's 0.20, using 0.47M versus 1.31M tokens. On Custom Tasks, GA scores 0.577 versus 0.50, winning 10 tasks against 6, while using only 0.26M tokens compared to 0.76M for OpenClaw.
 
 GA demonstrates consistent token efficiency across diverse task types, reducing token consumption by 2.9x to 3.9x while maintaining competitive or superior performance. The performance gap is particularly pronounced on BrowseComp-ZH, where GA's multi-stage compression pipeline preserves context density, enabling deeper reasoning chains without context overflow. This combination of efficiency and effectiveness makes GA practical for real-world web automation scenarios where token cost and latency are critical constraints. A detailed visualization is provided in Appendix~\ref{app:web_browsing_visualization}.
