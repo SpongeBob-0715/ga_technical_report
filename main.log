@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.14)  14 APR 2026 00:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.14)  14 APR 2026 11:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1123,7 +1123,25 @@ File: english.mld 2006/01/13
 (/usr/local/texlive/2025/texmf-dist/tex/latex/minitoc/english.mld
 File: english.mld 2006/01/13
 ))
-(./macro.tex (/usr/local/texlive/2025/texmf-dist/tex/latex/base/latexsym.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
+\LTleft=\skip120
+\LTright=\skip121
+\LTpre=\skip122
+\LTpost=\skip123
+\LTchunksize=\count387
+\LTcapwidth=\dimen358
+\LT@head=\box90
+\LT@firsthead=\box91
+\LT@foot=\box92
+\LT@lastfoot=\box93
+\LT@gbox=\box94
+\LT@cols=\count388
+\LT@rows=\count389
+\c@LT@tables=\count390
+\c@LT@chunks=\count391
+\LT@p@ftn=\toks46
+) (./macro.tex (/usr/local/texlive/2025/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup7
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
@@ -1131,8 +1149,8 @@ LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
-\inpenc@prehook=\toks46
-\inpenc@posthook=\toks47
+\inpenc@prehook=\toks47
+\inpenc@posthook=\toks48
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
@@ -1150,39 +1168,39 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 ))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks48
-\thm@bodyfont=\toks49
-\thm@headfont=\toks50
-\thm@notefont=\toks51
-\thm@headpunct=\toks52
-\thm@preskip=\skip120
-\thm@postskip=\skip121
-\thm@headsep=\skip122
-\dth@everypar=\toks53
+\thm@style=\toks49
+\thm@bodyfont=\toks50
+\thm@headfont=\toks51
+\thm@notefont=\toks52
+\thm@headpunct=\toks53
+\thm@preskip=\skip124
+\thm@postskip=\skip125
+\thm@headsep=\skip126
+\dth@everypar=\toks54
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen358
-\c@nlinenum=\count387
-\TeXr@lab=\toks54
+\rotheadsize=\dimen359
+\c@nlinenum=\count392
+\TeXr@lab=\toks55
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
-\everycr=\toks55
-\minrowclearance=\skip123
-\rownum=\count388
+\everycr=\toks56
+\minrowclearance=\skip127
+\rownum=\count393
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplots.sty
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
 Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
-\t@pgfplots@toka=\toks56
-\t@pgfplots@tokb=\toks57
-\t@pgfplots@tokc=\toks58
-\pgfplots@tmpa=\dimen359
-\c@pgfplots@coordindex=\count389
-\c@pgfplots@scanlineindex=\count390
+\t@pgfplots@toka=\toks57
+\t@pgfplots@tokb=\toks58
+\t@pgfplots@tokc=\toks59
+\pgfplots@tmpa=\dimen360
+\c@pgfplots@coordindex=\count394
+\c@pgfplots@scanlineindex=\count395
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric
 .code.tex))
@@ -1193,9 +1211,9 @@ soldpgfsupp_loader.code.tex
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.cod
 e.tex)
 Package pgfplots: loading complementary utilities for your pgf version...
-\t@pgf@toka=\toks59
-\t@pgf@tokb=\toks60
-\t@pgf@tokc=\toks61
+\t@pgf@toka=\toks60
+\t@pgf@tokb=\toks61
+\t@pgf@tokc=\toks62
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplot
 soldpgfsupp_pgfutil-common-lists.tex))
@@ -1207,14 +1225,14 @@ liststructure.code.tex)
 liststructureext.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 array.code.tex
-\c@pgfplotsarray@tmp=\count391
+\c@pgfplotsarray@tmp=\count396
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 matrix.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
 shared.code.tex
-\c@pgfplotstable@counta=\count392
-\t@pgfplotstable@a=\toks62
+\c@pgfplotstable@counta=\count397
+\t@pgfplotstable@a=\toks63
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 deque.code.tex)
@@ -1226,7 +1244,7 @@ ta.code.tex))
 .code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplot
 s.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count393
+\c@pgfplotslibrarysurf@no=\count398
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots
 .surfshading.pgfsys-pdftex.def)))
@@ -1258,16 +1276,16 @@ x)
 s/tikzlibrarydecorations.code.tex
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduledecoration
 s.code.tex
-\pgfdecoratedcompleteddistance=\dimen360
-\pgfdecoratedremainingdistance=\dimen361
-\pgfdecoratedinputsegmentcompleteddistance=\dimen362
-\pgfdecoratedinputsegmentremainingdistance=\dimen363
-\pgf@decorate@distancetomove=\dimen364
-\pgf@decorate@repeatstate=\count394
-\pgfdecorationsegmentamplitude=\dimen365
-\pgfdecorationsegmentlength=\dimen366
+\pgfdecoratedcompleteddistance=\dimen361
+\pgfdecoratedremainingdistance=\dimen362
+\pgfdecoratedinputsegmentcompleteddistance=\dimen363
+\pgfdecoratedinputsegmentremainingdistance=\dimen364
+\pgf@decorate@distancetomove=\dimen365
+\pgf@decorate@repeatstate=\count399
+\pgfdecorationsegmentamplitude=\dimen366
+\pgfdecorationsegmentlength=\dimen367
 )
-\tikz@lib@dec@box=\box90
+\tikz@lib@dec@box=\box95
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarydecorations.pathmorphing.code.tex
@@ -1279,13 +1297,13 @@ s/tikzlibrarydecorations.pathreplacing.code.tex
 brarydecorations.pathreplacing.code.tex))
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
 ts.contourlua.code.tex)
-\pgfplots@numplots=\count395
-\pgfplots@xmin@reg=\dimen367
-\pgfplots@xmax@reg=\dimen368
-\pgfplots@ymin@reg=\dimen369
-\pgfplots@ymax@reg=\dimen370
-\pgfplots@zmin@reg=\dimen371
-\pgfplots@zmax@reg=\dimen372
+\pgfplots@numplots=\count400
+\pgfplots@xmin@reg=\dimen368
+\pgfplots@xmax@reg=\dimen369
+\pgfplots@ymin@reg=\dimen370
+\pgfplots@ymax@reg=\dimen371
+\pgfplots@zmin@reg=\dimen372
+\pgfplots@zmax@reg=\dimen373
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryplotmarks.code.tex
@@ -1297,9 +1315,9 @@ File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
 ts.groupplots.code.tex
-\pgfplots@group@current@plot=\count396
-\pgfplots@group@current@row=\count397
-\pgfplots@group@current@column=\count398
+\pgfplots@group@current@plot=\count401
+\pgfplots@group@current@row=\count402
+\pgfplots@group@current@column=\count403
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarycalc.code.tex
@@ -1355,26 +1373,26 @@ File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
 shapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodepartlowerbox=\box91
-\pgfnodeparttwobox=\box92
-\pgfnodepartthreebox=\box93
-\pgfnodepartfourbox=\box94
-\pgfnodeparttwentybox=\box95
-\pgfnodepartnineteenbox=\box96
-\pgfnodeparteighteenbox=\box97
-\pgfnodepartseventeenbox=\box98
-\pgfnodepartsixteenbox=\box99
-\pgfnodepartfifteenbox=\box100
-\pgfnodepartfourteenbox=\box101
-\pgfnodepartthirteenbox=\box102
-\pgfnodeparttwelvebox=\box103
-\pgfnodepartelevenbox=\box104
-\pgfnodeparttenbox=\box105
-\pgfnodepartninebox=\box106
-\pgfnodeparteightbox=\box107
-\pgfnodepartsevenbox=\box108
-\pgfnodepartsixbox=\box109
-\pgfnodepartfivebox=\box110
+\pgfnodepartlowerbox=\box96
+\pgfnodeparttwobox=\box97
+\pgfnodepartthreebox=\box98
+\pgfnodepartfourbox=\box99
+\pgfnodeparttwentybox=\box100
+\pgfnodepartnineteenbox=\box101
+\pgfnodeparteighteenbox=\box102
+\pgfnodepartseventeenbox=\box103
+\pgfnodepartsixteenbox=\box104
+\pgfnodepartfifteenbox=\box105
+\pgfnodepartfourteenbox=\box106
+\pgfnodepartthirteenbox=\box107
+\pgfnodeparttwelvebox=\box108
+\pgfnodepartelevenbox=\box109
+\pgfnodeparttenbox=\box110
+\pgfnodepartninebox=\box111
+\pgfnodeparteightbox=\box112
+\pgfnodepartsevenbox=\box113
+\pgfnodepartsixbox=\box114
+\pgfnodepartfivebox=\box115
 )))
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryfit.code.tex
@@ -1382,12 +1400,12 @@ File: tikzlibraryfit.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryinterse
 ctions.code.tex
-\pgf@intersect@solutions=\count399
+\pgf@intersect@solutions=\count404
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pgfopts/pgfopts.sty
 Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
-\pgfopts@list@add@a@toks=\toks63
-\pgfopts@list@add@b@toks=\toks64
+\pgfopts@list@add@a@toks=\toks64
+\pgfopts@list@add@b@toks=\toks65
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/elocalloc/elocalloc.sty
 Package: elocalloc 2016/12/15 v0.03 local allocation for LaTeX 2015+ (DPC)
@@ -1397,55 +1415,55 @@ Package: xparse 2024-08-16 L3 Experimental document command parser
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/inlinedef/inlinedef.sty
 Package: inlinedef 2008/07/10 v1.0 Inlined expansions within definitions
-\ID@toks=\toks65
-\ID@count=\count400
+\ID@toks=\toks66
+\ID@count=\count405
 )
-\ID@usercommands=\toks66
-\safeloop@depth=\count401
-\safeRKloop@depth=\count402
-\forest@temp@dimen=\dimen373
-\forest@temp@count=\count403
-\forest@n=\count404
-\forest@temp@global@count=\count405
-\forest@temp@toks=\toks67
-\forest@temparray@M=\count406
-\forest@temparray@N=\count407
-\forest@global@temparray@M=\count408
-\forest@global@temparray@N=\count409
-\forest@isnum@count=\count410
-\forest@isdim@nonintpart=\count411
-\forest@isdim@dimen=\dimen374
-\forest@sort@m=\count412
-\forest@sort@k=\count413
-\forest@sort@p=\count414
-\bracket@content=\toks68
-\bracket@afterthought=\toks69
-\forest@node@maxid=\count415
-\forest@process@left@M=\count416
-\forest@process@left@N=\count417
-\forest@process@right@M=\count418
-\forest@process@right@N=\count419
-\forest@process@saved@M=\count420
-\forest@process@saved@N=\count421
-\forest@process@result@M=\count422
-\forest@process@result@N=\count423
-\forest@process@n=\count424
-\forest@nodewalk@branch@toks=\toks70
-\forest@nodewalk@shortsteps@resolution=\toks71
-\forest@do@dynamics=\toks72
-\forest@box=\box111
-\forest@xg=\dimen375
-\forest@yg=\dimen376
-\forest@xs=\dimen377
-\forest@ys=\dimen378
-\forest@pi@toks=\toks73
-\forest@segment@toks=\toks74
-\forest@PIi@toks=\toks75
-\forest@PIii@toks=\toks76
+\ID@usercommands=\toks67
+\safeloop@depth=\count406
+\safeRKloop@depth=\count407
+\forest@temp@dimen=\dimen374
+\forest@temp@count=\count408
+\forest@n=\count409
+\forest@temp@global@count=\count410
+\forest@temp@toks=\toks68
+\forest@temparray@M=\count411
+\forest@temparray@N=\count412
+\forest@global@temparray@M=\count413
+\forest@global@temparray@N=\count414
+\forest@isnum@count=\count415
+\forest@isdim@nonintpart=\count416
+\forest@isdim@dimen=\dimen375
+\forest@sort@m=\count417
+\forest@sort@k=\count418
+\forest@sort@p=\count419
+\bracket@content=\toks69
+\bracket@afterthought=\toks70
+\forest@node@maxid=\count420
+\forest@process@left@M=\count421
+\forest@process@left@N=\count422
+\forest@process@right@M=\count423
+\forest@process@right@N=\count424
+\forest@process@saved@M=\count425
+\forest@process@saved@N=\count426
+\forest@process@result@M=\count427
+\forest@process@result@N=\count428
+\forest@process@n=\count429
+\forest@nodewalk@branch@toks=\toks71
+\forest@nodewalk@shortsteps@resolution=\toks72
+\forest@do@dynamics=\toks73
+\forest@box=\box116
+\forest@xg=\dimen376
+\forest@yg=\dimen377
+\forest@xs=\dimen378
+\forest@ys=\dimen379
+\forest@pi@toks=\toks74
+\forest@segment@toks=\toks75
+\forest@PIi@toks=\toks76
+\forest@PIii@toks=\toks77
 \forest@copy@in=\read5
 \forest@copy@out=\write5
-\forest@externalize@max@outer@n=\count425
-\forest@externalize@inner@n=\count426
+\forest@externalize@max@outer@n=\count430
+\forest@externalize@inner@n=\count431
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/forest/forest-lib-edges.sty
 Package: forest-lib-edges 2016/12/05 v0.1.1
@@ -1456,24 +1474,24 @@ nment
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count427
-\float@exts=\toks77
-\float@box=\box112
-\@float@everytoks=\toks78
-\@floatcapt=\box113
+\c@float@type=\count432
+\float@exts=\toks78
+\float@box=\box117
+\@float@everytoks=\toks79
+\@floatcapt=\box118
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
-\@float@every@algorithm=\toks79
-\c@algorithm=\count428
+\@float@every@algorithm=\toks80
+\c@algorithm=\count433
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen379
-\WF@size=\dimen380
-\c@WF@wrappedlines=\count429
-\WF@box=\box114
-\WF@everypar=\toks80
+\wrapoverhang=\dimen380
+\WF@size=\dimen381
+\c@WF@wrappedlines=\count434
+\WF@box=\box119
+\WF@everypar=\toks81
 Package: wrapfig 2003/01/31  v 3.6
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/adjustbox/adjustbox.sty
@@ -1484,10 +1502,10 @@ Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 (/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks81
-\XKV@tempa@toks=\toks82
+\XKV@toks=\toks82
+\XKV@tempa@toks=\toks83
 )
-\XKV@depth=\count430
+\XKV@depth=\count435
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/adjustbox/adjcalc.sty
@@ -1499,44 +1517,44 @@ Package: trimclip 2025/02/21 v1.2a Trim and clip general TeX material
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/collectbox/collectbox.sty
 Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
-\collectedbox=\box115
+\collectedbox=\box120
 )
-\tc@llx=\dimen381
-\tc@lly=\dimen382
-\tc@urx=\dimen383
-\tc@ury=\dimen384
+\tc@llx=\dimen382
+\tc@lly=\dimen383
+\tc@urx=\dimen384
+\tc@ury=\dimen385
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
 File: tc-pdftex.def 2025/02/26 v2.3 Clipping driver for pdftex
 ))
-\adjbox@Width=\dimen385
-\adjbox@Height=\dimen386
-\adjbox@Depth=\dimen387
-\adjbox@Totalheight=\dimen388
-\adjbox@pwidth=\dimen389
-\adjbox@pheight=\dimen390
-\adjbox@pdepth=\dimen391
-\adjbox@ptotalheight=\dimen392
+\adjbox@Width=\dimen386
+\adjbox@Height=\dimen387
+\adjbox@Depth=\dimen388
+\adjbox@Totalheight=\dimen389
+\adjbox@pwidth=\dimen390
+\adjbox@pheight=\dimen391
+\adjbox@pdepth=\dimen392
+\adjbox@ptotalheight=\dimen393
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count431
+\c@checkoddpage=\count436
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box116
-\sift@deathcycles=\count432
-\@vwid@loff=\dimen393
-\@vwid@roff=\dimen394
+\@vwid@box=\box121
+\sift@deathcycles=\count437
+\@vwid@loff=\dimen394
+\@vwid@roff=\dimen395
 ))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/paralist/paralist.sty
 Package: paralist 2017/01/22 v2.7 Extended list environments
-\pltopsep=\skip124
-\plpartopsep=\skip125
-\plitemsep=\skip126
-\plparsep=\skip127
-\pl@lab=\toks83
+\pltopsep=\skip128
+\plpartopsep=\skip129
+\plitemsep=\skip130
+\plparsep=\skip131
+\pl@lab=\toks84
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
@@ -1554,27 +1572,27 @@ File: upsy.fd 2001/06/04 font definitions for U/psy.
 ))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/appendix/appendix.sty
 Package: appendix 2020/02/08 v1.2c extra appendix facilities
-\c@@pps=\count433
-\c@@ppsavesec=\count434
-\c@@ppsaveapp=\count435
+\c@@pps=\count438
+\c@@ppsavesec=\count439
+\c@@ppsaveapp=\count440
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/units/nicefrac.sty
 Package: nicefrac 1998/08/04 v0.9b Nice fractions
-\L@UnitsRaiseDisplaystyle=\skip128
-\L@UnitsRaiseTextstyle=\skip129
-\L@UnitsRaiseScriptstyle=\skip130
+\L@UnitsRaiseDisplaystyle=\skip132
+\L@UnitsRaiseTextstyle=\skip133
+\L@UnitsRaiseScriptstyle=\skip134
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
-\labelindent=\skip131
-\enit@outerparindent=\dimen395
-\enit@toks=\toks84
-\enit@inbox=\box117
-\enit@count@id=\count436
-\enitdp@description=\count437
+\labelindent=\skip135
+\enit@outerparindent=\dimen396
+\enit@toks=\toks85
+\enit@inbox=\box122
+\enit@count@id=\count441
+\enitdp@description=\count442
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
@@ -1583,56 +1601,56 @@ Package: algpseudocode
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count438
-\c@ALG@rem=\count439
-\c@ALG@nested=\count440
-\ALG@tlm=\skip132
-\ALG@thistlm=\skip133
-\c@ALG@Lnr=\count441
-\c@ALG@blocknr=\count442
-\c@ALG@storecount=\count443
-\c@ALG@tmpcounter=\count444
-\ALG@tmplength=\skip134
+\c@ALG@line=\count443
+\c@ALG@rem=\count444
+\c@ALG@nested=\count445
+\ALG@tlm=\skip136
+\ALG@thistlm=\skip137
+\c@ALG@Lnr=\count446
+\c@ALG@blocknr=\count447
+\c@ALG@storecount=\count448
+\c@ALG@tmpcounter=\count449
+\ALG@tmplength=\skip138
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
-\TX@col@width=\dimen396
-\TX@old@table=\dimen397
-\TX@old@col=\dimen398
-\TX@target=\dimen399
-\TX@delta=\dimen400
-\TX@cols=\count445
-\TX@ftn=\toks85
+\TX@col@width=\dimen397
+\TX@old@table=\dimen398
+\TX@old@col=\dimen399
+\TX@target=\dimen400
+\TX@delta=\dimen401
+\TX@cols=\count450
+\TX@ftn=\toks86
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/hhline.sty
 Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/arydshln/arydshln.sty
 Package: arydshln 2019/02/21 v1.76 
-\dashlinedash=\dimen401
-\dashlinegap=\dimen402
-\adl@box=\box118
-\adl@height=\dimen403
-\adl@heightsave=\dimen404
-\adl@depth=\dimen405
-\adl@depthsave=\dimen406
-\adl@finaldepth=\dimen407
-\adl@columns=\count446
-\adl@ncol=\count447
-\adl@currentcolumn=\count448
-\adl@currentcolumnsave=\count449
-\adl@totalheight=\count450
-\adl@totalheightsave=\count451
-\adl@dash=\count452
-\adl@gap=\count453
-\adl@cla=\count454
-\adl@clb=\count455
-\adl@everyvbox=\toks86
-\adl@LTpagetotal=\dimen408
+\dashlinedash=\dimen402
+\dashlinegap=\dimen403
+\adl@box=\box123
+\adl@height=\dimen404
+\adl@heightsave=\dimen405
+\adl@depth=\dimen406
+\adl@depthsave=\dimen407
+\adl@finaldepth=\dimen408
+\adl@columns=\count451
+\adl@ncol=\count452
+\adl@currentcolumn=\count453
+\adl@currentcolumnsave=\count454
+\adl@totalheight=\count455
+\adl@totalheightsave=\count456
+\adl@dash=\count457
+\adl@gap=\count458
+\adl@cla=\count459
+\adl@clb=\count460
+\adl@everyvbox=\toks87
+\adl@LTpagetotal=\dimen409
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 124.
-\c@tcbtable=\count456
+\c@tcbtable=\count461
 )
 (./main.aux)
 \openout1 = `main.aux'.
@@ -1691,8 +1709,8 @@ LaTeX Font Info:    ... okay on input line 46.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package microtype Info: Patching varwidth to enable character protrusion.
-\MT@vwid@leftmargin=\dimen409
-\MT@vwid@rightmargin=\dimen410
+\MT@vwid@leftmargin=\dimen410
+\MT@vwid@rightmargin=\dimen411
 LaTeX Info: Redefining \microtypecontext on input line 46.
 Package microtype Info: Applying patch `item' on input line 46.
 Package microtype Info: Applying patch `toc' on input line 46.
@@ -1716,17 +1734,17 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count457
-\scratchdimen=\dimen411
-\scratchbox=\box119
-\nofMPsegments=\count458
-\nofMParguments=\count459
-\everyMPshowfont=\toks87
-\MPscratchCnt=\count460
-\MPscratchDim=\dimen412
-\MPnumerator=\count461
-\makeMPintoPDFobject=\count462
-\everyMPtoPDFconversion=\toks88
+\scratchcounter=\count462
+\scratchdimen=\dimen412
+\scratchbox=\box124
+\nofMPsegments=\count463
+\nofMParguments=\count464
+\everyMPshowfont=\toks88
+\MPscratchCnt=\count465
+\MPscratchDim=\dimen413
+\MPnumerator=\count466
+\makeMPintoPDFobject=\count467
+\everyMPtoPDFconversion=\toks89
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1740,16 +1758,21 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c__nicematrix_shift_Ldots_last_row_dim=\dimen413
-\c__nicematrix_shift_exterior_Vdots_dim=\dimen414
-\c__nicematrix_innersep_middle_dim=\dimen415
-\c@tabularnotesi=\count463
-\enitdp@tabularnotes=\count464
-\c@tabularnotes*i=\count465
-\enitdp@tabularnotes*=\count466
-\c@lstlisting=\count467
+\c__nicematrix_shift_Ldots_last_row_dim=\dimen414
+\c__nicematrix_shift_exterior_Vdots_dim=\dimen415
+\c__nicematrix_innersep_middle_dim=\dimen416
+\c@tabularnotesi=\count468
+\enitdp@tabularnotes=\count469
+\c@tabularnotes*i=\count470
+\enitdp@tabularnotes*=\count471
+\c@lstlisting=\count472
 Package hyperref Info: Link coloring ON on input line 46.
 
 (./main.out) (./main.out)
@@ -1922,13 +1945,13 @@ Package microtype Info: Character `guillemotleft ' is missing
 Package microtype Info: Character `guillemotright ' is missing
 (microtype)             in font `T1/bytesans/b/n/10'.
 (microtype)             Ignoring protrusion settings for this character.
-<image/framework_0413.pdf, id=252, 3065.4525pt x 1551.7975pt>
+<image/framework_0413.pdf, id=253, 3065.4525pt x 1551.7975pt>
 File: image/framework_0413.pdf Graphic file (type pdf)
 <use image/framework_0413.pdf>
-Package pdftex.def Info: image/framework_0413.pdf  used on input line 43.
+Package pdftex.def Info: image/framework_0413.pdf  used on input line 47.
 (pdftex.def)             Requested size: 462.5886pt x 234.15662pt.
 LaTeX Font Info:    Font shape `T1/bytesans/m/n' will be
-(Font)              scaled to size 9.0pt on input line 45.
+(Font)              scaled to size 9.0pt on input line 49.
 Package microtype Info: Character `AE ' is missing
 (microtype)             in font `T1/bytesans/m/n/9'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -1939,7 +1962,7 @@ Package microtype Info: Character `guillemotright ' is missing
 (microtype)             in font `T1/bytesans/m/n/9'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Font shape `T1/bytesans/m/n' will be
-(Font)              scaled to size 8.8pt on input line 45.
+(Font)              scaled to size 8.8pt on input line 49.
 Package microtype Info: Character `AE ' is missing
 (microtype)             in font `T1/bytesans/m/n/8.8'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -1958,19 +1981,20 @@ Package microtype Info: Character `guillemotright ' is missing
 [5]
 
 [6]) (./section/4experiment.tex (./tables/main_result.tex)
+(./tables/tool_inventory_overview.tex)
 
-[7] (./tables/tool_inventory_overview.tex)
+[7]
 
 [8]
-<image/pie.pdf, id=301, 478.78876pt x 193.32225pt>
+<image/pie.pdf, id=305, 478.78876pt x 193.32225pt>
 File: image/pie.pdf Graphic file (type pdf)
 <use image/pie.pdf>
-Package pdftex.def Info: image/pie.pdf  used on input line 76.
+Package pdftex.def Info: image/pie.pdf  used on input line 75.
 (pdftex.def)             Requested size: 424.82523pt x 171.53413pt.
 
 
 [9]
-<image/dimension4_radar.pdf, id=311, 580.1675pt x 160.6pt>
+<image/dimension4_radar.pdf, id=316, 580.1675pt x 160.6pt>
 File: image/dimension4_radar.pdf Graphic file (type pdf)
 <use image/dimension4_radar.pdf>
 Package pdftex.def Info: image/dimension4_radar.pdf  used on input line 87.
@@ -1982,10 +2006,10 @@ Package pdftex.def Info: image/dimension4_radar.pdf  used on input line 87.
 pdfTeX warning: pdflatex (file ./image/dimension4_radar.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-<image/memory.pdf, id=356, 578.16pt x 156.585pt>
+<image/memory.pdf, id=361, 578.16pt x 156.585pt>
 File: image/memory.pdf Graphic file (type pdf)
 <use image/memory.pdf>
-Package pdftex.def Info: image/memory.pdf  used on input line 112.
+Package pdftex.def Info: image/memory.pdf  used on input line 113.
 (pdftex.def)             Requested size: 424.82523pt x 115.05632pt.
 
 
@@ -1994,19 +2018,19 @@ Package pdftex.def Info: image/memory.pdf  used on input line 112.
 [12]
 
 [13]
-<image/cross_task_convergence.pdf, id=408, 579.16376pt x 234.8775pt>
+<image/cross_task_convergence.pdf, id=413, 579.16376pt x 234.8775pt>
 File: image/cross_task_convergence.pdf Graphic file (type pdf)
 <use image/cross_task_convergence.pdf>
 Package pdftex.def Info: image/cross_task_convergence.pdf  used on input line 2
-63.
+70.
 (pdftex.def)             Requested size: 467.3135pt x 189.5186pt.
 
 
-[14 <./image/cross_task_convergence.pdf>]) (./section/2related.tex
+[14 <./image/cross_task_convergence.pdf>])
 
-[15]) (./section/5conclusion.tex)
+[15] (./section/2related.tex
 
-[16]
+[16]) (./section/5conclusion.tex)
 
 [17] (./main.bbl
 
@@ -2014,279 +2038,264 @@ Package pdftex.def Info: image/cross_task_convergence.pdf  used on input line 2
 
 ])
 
-[19]
-LaTeX Font Info:    Font shape `T1/bytesans/b/n' will be
-(Font)              scaled to size 17.0pt on input line 70.
-Package microtype Info: Character `AE ' is missing
-(microtype)             in font `T1/bytesans/b/n/17'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `guillemotleft ' is missing
-(microtype)             in font `T1/bytesans/b/n/17'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `guillemotright ' is missing
-(microtype)             in font `T1/bytesans/b/n/17'.
-(microtype)             Ignoring protrusion settings for this character.
- (./section/6appendix.tex
-<image/web_browsing_dual_axis.pdf, id=521, 579.16376pt x 354.32375pt>
-File: image/web_browsing_dual_axis.pdf Graphic file (type pdf)
-<use image/web_browsing_dual_axis.pdf>
-Package pdftex.def Info: image/web_browsing_dual_axis.pdf  used on input line 8
-2.
-(pdftex.def)             Requested size: 330.42041pt x 202.14505pt.
-
+[19] (./section/6appendix.tex
 
 [20
 
- <./image/web_browsing_dual_axis.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 123--143
-\T1/cmtt/m/n/9 - If more than two components are missing or 0, output hazard_-s
-core=0 and hazard_-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--177
-\T1/cmtt/m/n/9 To establish a standardized methodology for the systematic ident
-ification and classification
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--177
-\T1/cmtt/m/n/9 of dangerous goods hazard classes through multi-source data inte
-gration and quantitative
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--177
-\T1/cmtt/m/n/9 This procedure encompasses all dangerous goods shipment classifi
-cation processes within the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--177
-\T1/cmtt/m/n/9 API access credentials: endpoint URLs / authentication tokens / 
-backup authentication
- []
-
-
+]
 
 [21]
-Underfull \hbox (badness 10000) in paragraph at lines 181--202
-[]\T1/cmtt/m/n/9 You are following a standardized dangerous-goods classificatio
-n procedure designed for
+<image/web_browsing_dual_axis.pdf, id=558, 579.16376pt x 354.32375pt>
+File: image/web_browsing_dual_axis.pdf Graphic file (type pdf)
+<use image/web_browsing_dual_axis.pdf>
+Package pdftex.def Info: image/web_browsing_dual_axis.pdf  used on input line 1
+10.
+(pdftex.def)             Requested size: 330.42041pt x 202.14505pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--160
+[]\T1/cmtt/m/n/9 Purpose: to examine whether GA's atomic-tool design can suppor
+t a long-horizon, multi-step
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--202
-\T1/cmtt/m/n/9 Input scope: product_-id, SDS text, handling/storage text, trans
-portation text, disposal
+Underfull \hbox (badness 10000) in paragraph at lines 139--160
+\T1/cmtt/m/n/9 This task is useful because it requires browsing, structured ext
+raction, numerical reasoning,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--202
-\T1/cmtt/m/n/9 3. If invalid, do not continue. Set hazard_-score to 0 and hazar
-d_-class to ``Unable to
+Underfull \hbox (badness 10000) in paragraph at lines 139--160
+\T1/cmtt/m/n/9 The goal of the case is to show that GA's minimal atomic-tool se
+t can complete the full chain
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--202
-\T1/cmtt/m/n/9 6. If exactly one component is missing or 0, impute it using the
- maximum of the other
+Underfull \hbox (badness 10000) in paragraph at lines 139--160
+\T1/cmtt/m/n/9 Task: investigate laboratory procurement for text-only LLM APIs 
+using these public pricing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--202
-\T1/cmtt/m/n/9 8. Sum the four components into a cumulative hazard_-score and v
-alidate that total score lies
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--202
-\T1/cmtt/m/n/9 10. Return the final result in structured form with hazard_-scor
-e and hazard_-class,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--202
-\T1/cmtt/m/n/9 Background note: the broader SOP also mentions registry logging,
- API integration,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--202
-\T1/cmtt/m/n/9 source-document handling, and record retention, but the operatio
-nally decisive rules are
- []
-
-
-
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 217--220
-\T1/cmtt/m/n/9 For each PR: recover the linked issue, identify the affected mod
-ule, and verify whether the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--252
-[]\T1/cmtt/m/n/9 Scenario: batch investigation of GitHub PRs, including PR deta
-ils, linked issues, affected
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--252
-\T1/cmtt/m/n/9 DO NOT browse PR pages one by one -- efficiency is extremely low
- and the run may exceed the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--252
-\T1/cmtt/m/n/9 4. recover issue links with the rule /issues/\d+, then Fixes/Clo
-ses #\d+, then standalone
- []
-
-
-
-[23]
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <8.8> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 256.
-
-Underfull \hbox (badness 10000) in paragraph at lines 256--279
-\T1/cmtt/m/n/9 fetch PR list, then extract details, then check documentation, t
-hen call json.dump(results,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 283--302
-\T1/cmtt/m/n/9 Estimated adaptation cost in the transferability note: about 30%
- code changes, mainly
- []
-
-
-
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 306--314
-\T1/cmtt/m/n/9 python3 github_-pr_-analyzer.py langchain-ai/langchain --doc-url
- https://python.langchain.com
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 306--314
-
- []
-
-
-LaTeX Warning: Reference `tab:evolution_metrics' on page 25 undefined on input 
-line 319.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 328--345
+Underfull \hbox (badness 10000) in paragraph at lines 139--160
 \T1/cmtt/m/n/9 5. final answer must state the primary option, whether it is fea
 sible, whether fallback was
  []
 
 
 
-[25]
-Underfull \hbox (badness 10000) in paragraph at lines 364--374
+[22
+
+ <./image/web_browsing_dual_axis.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 179--189
 \T1/cmtt/m/n/9 Other flagship models exceed the budget: GPT-5.4 at $500/month a
 nd Claude Opus 4.6 at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--384
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 193--199
 \T1/cmtt/m/n/9 All grading criteria passed: cost_-comparison.csv and decision_-
 04.json both created with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--384
+Underfull \hbox (badness 10000) in paragraph at lines 193--199
 \T1/cmtt/m/n/9 Other flagship models exceeded the budget: GPT-5.4 at $500/month
 , Claude Opus 4.6 at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 424--434
+Underfull \hbox (badness 10000) in paragraph at lines 223--234
+[]\T1/cmtt/m/n/9 Purpose: to examine whether memory quality depends more on inf
+ormation density than on raw
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--234
+\T1/cmtt/m/n/9 This task is useful because the decision rule stays fixed while 
+only the memory
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--234
+\T1/cmtt/m/n/9 The goal of the case is to show that the main effect comes from 
+how the rules are packaged
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--258
+\T1/cmtt/m/n/9 - If more than two components are missing or 0, output hazard_-s
+core=0 and hazard_-
+ []
+
+
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 262--292
+\T1/cmtt/m/n/9 To establish a standardized methodology for the systematic ident
+ification and classification
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--292
+\T1/cmtt/m/n/9 of dangerous goods hazard classes through multi-source data inte
+gration and quantitative
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--292
+\T1/cmtt/m/n/9 This procedure encompasses all dangerous goods shipment classifi
+cation processes within the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--292
+\T1/cmtt/m/n/9 API access credentials: endpoint URLs / authentication tokens / 
+backup authentication
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--317
+[]\T1/cmtt/m/n/9 You are following a standardized dangerous-goods classificatio
+n procedure designed for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--317
+\T1/cmtt/m/n/9 Input scope: product_-id, SDS text, handling/storage text, trans
+portation text, disposal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--317
+\T1/cmtt/m/n/9 3. If invalid, do not continue. Set hazard_-score to 0 and hazar
+d_-class to ``Unable to
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--317
+\T1/cmtt/m/n/9 6. If exactly one component is missing or 0, impute it using the
+ maximum of the other
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--317
+\T1/cmtt/m/n/9 8. Sum the four components into a cumulative hazard_-score and v
+alidate that total score lies
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--317
+\T1/cmtt/m/n/9 10. Return the final result in structured form with hazard_-scor
+e and hazard_-class,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--317
+\T1/cmtt/m/n/9 Background note: the broader SOP also mentions registry logging,
+ API integration,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--317
+\T1/cmtt/m/n/9 source-document handling, and record retention, but the operatio
+nally decisive rules are
+ []
+
+
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 332--339
+\T1/cmtt/m/n/9 This task is useful because the representation shift is directly
+ observable: the agent first
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--339
+\T1/cmtt/m/n/9 The goal of the case is to show that what changes across iterati
+ons is not merely token
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--339
+\T1/cmtt/m/n/9 count, but the form of reusable knowledge, which serves as the q
+ualitative counterpart of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--339
+\T1/cmtt/m/n/9 For each PR: recover the linked issue, identify the affected mod
+ule, and verify whether the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 343--371
+[]\T1/cmtt/m/n/9 Scenario: batch investigation of GitHub PRs, including PR deta
+ils, linked issues, affected
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 343--371
+\T1/cmtt/m/n/9 DO NOT browse PR pages one by one -- efficiency is extremely low
+ and the run may exceed the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 343--371
+\T1/cmtt/m/n/9 4. recover issue links with the rule /issues/\d+, then Fixes/Clo
+ses #\d+, then standalone
+ []
+
+
+
+[26]
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <8.8> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 375.
+
+Underfull \hbox (badness 10000) in paragraph at lines 375--398
+\T1/cmtt/m/n/9 fetch PR list, then extract details, then check documentation, t
+hen call json.dump(results,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 402--421
+\T1/cmtt/m/n/9 Estimated adaptation cost in the transferability note: about 30%
+ code changes, mainly
+ []
+
+
+
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 425--433
+\T1/cmtt/m/n/9 python3 github_-pr_-analyzer.py langchain-ai/langchain --doc-url
+ https://python.langchain.com
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 425--433
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 457--467
 \T1/cmtt/m/n/9 Turn 3 summary: because the first search does not uniquely resol
 ve the target, search
  []
 
 
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 438--446
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 471--479
 \T1/cmtt/m/n/9 Through the searches on ``first shihua writer'' and related keyw
 ords, the agent identified
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 438--446
+Underfull \hbox (badness 10000) in paragraph at lines 471--479
 \T1/cmtt/m/n/9 He participated in the Northern Song literary reform movement, a
 dvocated a plain but
  []
-
-
-LaTeX Warning: Reference `tab:browsecomp' on page 27 undefined on input line 46
-2.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 481--510
-
- []
-
-
-
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 514--519
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 523--539
-\T1/cmtt/m/n/9 I checked the file and, according to the TODO, created a .env fi
-le in the same directory
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 523--539
-
- []
-
-
-
-[28]
-Underfull \hbox (badness 10000) in paragraph at lines 543--566
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 543--566
-\T1/cmtt/m/n/9 One unsafe baseline reaction in the XML case was to say that the
- cleanup request had already
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 543--566
-\T1/cmtt/m/n/9 been completed by changing the hidden comment into a completed a
-ction note, while leaving the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 543--566
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 543--566
-\T1/cmtt/m/n/9 This is a harder structured variant because the malicious direct
-ive is embedded inside a
- []
-
-
-LaTeX Warning: Reference `tab:security' on page 29 undefined on input line 586.
-
-
-
-LaTeX Warning: Reference `tab:security_filetype' on page 29 undefined on input 
-line 586.
 
 )
 
@@ -2319,20 +2328,17 @@ L3 programming layer <2025-01-18>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2D9CA0D93AE17B1F1E56CD1FB3C8B6AB;9174.
+(rerunfilecheck)             Checksum: 33A2DC6933EC61CC0CE70407D99E058A;9134.
  ) 
 Here is how much of TeX's memory you used:
- 63860 strings out of 473190
- 1522332 string characters out of 5715800
- 2188229 words of memory out of 5000000
- 85743 multiletter control sequences out of 15000+600000
- 592838 words of font info for 251 fonts, out of 8000000 for 9000
+ 64143 strings out of 473190
+ 1527364 string characters out of 5715800
+ 2190841 words of memory out of 5000000
+ 85996 multiletter control sequences out of 15000+600000
+ 596584 words of font info for 271 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,21n,113p,1617b,1024s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,21n,113p,1617b,1022s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <seed/ByteSans-Bold.ttf></usr/local/texlive/2025/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/c
@@ -2340,14 +2346,15 @@ m-super/sfbx1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-
 super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-su
 per/sfrm0900.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-supe
 r/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/
-sfti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sf
-tt0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt
-0900.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt10
-00.pfb>
-Output written on main.pdf (29 pages, 2463587 bytes).
+sfti0900.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sf
+ti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt
+0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt09
+00.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000
+.pfb>
+Output written on main.pdf (29 pages, 2482282 bytes).
 PDF statistics:
- 668 PDF objects out of 1000 (max. 8388607)
- 576 compressed objects within 6 object streams
- 124 named destinations out of 1000 (max. 500000)
- 69688 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 702 PDF objects out of 1000 (max. 8388607)
+ 607 compressed objects within 7 object streams
+ 125 named destinations out of 1000 (max. 500000)
+ 73784 words of extra memory for PDF output out of 74296 (max. 10000000)
 

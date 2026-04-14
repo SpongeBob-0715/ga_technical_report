@@ -24,20 +24,24 @@ These three constraints form a minimal and complementary set. Completeness ensur
 Based on these constraints, GA introduces four system-level mechanisms to enforce high-density context construction, namely a minimal tool set, hierarchical memory mechanism, reflection-driven self-evolution, and efficient browser interaction via structured extraction. Through these mechanisms, GA shifts context construction from passive accumulation to active optimization. The context is transformed from a long sequence of tokens into a compact, high-value information substrate for decision making.
 
 
-\subsubsection{Tool Minimality} To reduce the overhead introduced by tool schemas, GA adopts a minimal tool set consisting of nine atomic tools and follows two core principles: \textbf{atomicity} and \textbf{compositional generalization}. Atomicity constrains tool granularity by enforcing irreducible primitive capabilities, while compositional generalization enables the expression of complex tasks through sequential composition of these atomic tools. Table~\ref{tab:tools} summarizes the complete GA tool set.
+\subsubsection{Tool Minimality}
+\label{sec:tool_minimality} To reduce the overhead introduced by tool schemas, GA adopts a minimal tool set consisting of nine atomic tools and follows two core principles: \textbf{atomicity} and \textbf{compositional generalization}. Atomicity constrains tool granularity by enforcing irreducible primitive capabilities, while compositional generalization enables the expression of complex tasks through sequential composition of these atomic tools. Table~\ref{tab:tools} summarizes the complete GA tool set.
 
 This minimal tool set yields two direct benefits. First, it significantly reduces tool-description overhead in the context. In multi-turn interactions, a smaller and more interface-efficient tool set directly reduces cumulative token consumption across calls. Second, it reduces the model’s decision complexity. A compact and well-bounded action space decreases uncertainty in tool selection, enabling more stable tool-use patterns and thereby reducing execution errors and retries.
 
 Besides, GA does not rely on specialized tools to expand functionality. Instead, complex behaviors are composed from atomic primitives. For example, file-level operations follow a standard read–modify–write paradigm, while web interactions are decomposed into content retrieval and browser-side execution. External capabilities are encapsulated as Skills and invoked indirectly through general-purpose code-execution and web-related primitives, and are loaded into the context only on demand. 
 
-\subsubsection{Hierarchical Memory} It aggressively filters out redundant signals and preserves only experience that introduces non-trivial behavioral change. The objective is to maximize the marginal impact of each retained interaction on future decisions, ensuring that stored experience directly shapes and improves GA's behavior.
+\subsubsection{Hierarchical Memory}
+\label{sec:hierarchical_memory} It aggressively filters out redundant signals and preserves only experience that introduces non-trivial behavioral change. The objective is to maximize the marginal impact of each retained interaction on future decisions, ensuring that stored experience directly shapes and improves GA's behavior.
 
 The memory system follows a four-layer architecture with hierarchical distillation and taxonomy-based organization. It focuses on keeping only behaviorally useful knowledge. L0 defines constraints. L1 handles routing. L2 stores verified facts. L3 captures reusable experience. Together, they allow GA to operate within a fixed context budget while maximizing the utility of each token.
 
-\subsubsection{Reflection-Driven Adaptation} It preserves semantic integrity while reducing reasoning cost. Through periodic reflection, GA analyzes historical execution traces and converts them into structured knowledge. These structures are then organized into executable forms. The evolution is guided by user task distributions and behavioral patterns, ensuring alignment with real-world usage and observed failures.
+\subsubsection{Reflection-Driven Adaptation}
+\label{sec:reflection_adaptation} It preserves semantic integrity while reducing reasoning cost. Through periodic reflection, GA analyzes historical execution traces and converts them into structured knowledge. These structures are then organized into executable forms. The evolution is guided by user task distributions and behavioral patterns, ensuring alignment with real-world usage and observed failures.
 
 
-\subsubsection{Structured Browser Extraction} This addresses the inefficiency of raw web pages, where most DOM content is irrelevant yet consumes large context, making direct input both costly and low in information density. At the same time, aggressive filtering risks losing useful signals. GA resolves this by extracting only compact, task-focused content from pages, removing verbose HTML and redundant markup. This makes browser interaction efficient while preserving the information needed for decision making.
+\subsubsection{Structured Browser Extraction}
+\label{sec:browser_extraction} This addresses the inefficiency of raw web pages, where most DOM content is irrelevant yet consumes large context, making direct input both costly and low in information density. At the same time, aggressive filtering risks losing useful signals. GA resolves this by extracting only compact, task-focused content from pages, removing verbose HTML and redundant markup. This makes browser interaction efficient while preserving the information needed for decision making.
 \begin{figure*}[t]
     \centering
     \includegraphics[width=0.98\linewidth]{image/framework_0413.pdf}
@@ -109,7 +113,7 @@ Overall, GA builds an extremely compact tool system through capability compressi
 \end{table}
 
 \subsubsection{Hierarchical Memory Architecture}
-\label{sec:momory}
+\label{sec:memory}
 GA follows a four-layer architecture with hierarchical distillation and taxonomy-based organization.
 
 \textbf{L0: Meta-Rule Layer.}  L0 defines the core behavioral constraints of GA. It acts as a lightweight control layer for system operation and self-regulation. Each rule is written in a single sentence. For example: ``Only information verified through execution can be written to long-term memory.'' This rule prevent unverified or hallucinated information from entering long-term memory. L0 is injected into the system prompt at startup with minimal overhead and remains fixed during execution.
@@ -148,6 +152,7 @@ GA monitors Skill usage and updates implementations over time. Updates include i
 These stages form a closed loop. Reflection extracts experience, SOPs generalize behavior, code replaces reasoning, and Skills enable reuse. This process improves efficiency over time and reduces redundant computation. 
 
 \subsubsection{Structured Extraction for Efficient Browser Interaction}
+\label{sec:structured_extraction}
 Interacting with web pages is expensive in tokens. A full DOM often contains tens of thousands of tokens, while only a small portion is useful for the current task. Sending the full DOM to the model is not practical. At the same time, aggressive filtering may remove important signals. GA address this with a two-stage extraction pipeline.
 
 \textbf{Geometry-aware DOM pruning.} A JavaScript routine clones the DOM with access to layout information. Invisible nodes are removed, including hidden elements, zero-area nodes, and off-screen content. Modal dialogs and cookie banners are explicitly detected by their viewport coverage and moved to the top level. Form states such as input values and checkboxes are preserved during cloning. This ensures the snapshot matches the actual visible page state.

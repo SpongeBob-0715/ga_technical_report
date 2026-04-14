@@ -1,18 +1,21 @@
 Relevant prior work can be organized around four closely related questions: how agents are structured for long-horizon execution, how they manage memory and context, how they improve from experience, and how they operate over tools and noisy web environments. GA is motivated not by any single gap in these lines, but by their missing combination: general-purpose autonomy requires all four components to work together under a tight context budget.
 
 \subsection{LLM-Based Agent Systems and Action Interfaces}
+\label{sec:related_llm_agents}
 
 LLM agents have evolved from prompt-level reasoning loops to integrated systems that execute long action sequences in real environments. ReAct~\citep{react} and Reflexion~\citep{reflexion} established the basic loop of interleaving reasoning, acting, and feedback. AutoGPT~\citep{autogpt} popularized iterative goal decomposition, while MetaGPT~\citep{metagpt} pushed the field toward explicit multi-role coordination and workflow design. This line established the key intuition that agent performance depends not only on the base model, but also on how deliberation is scaffolded over multiple steps.
 
 As agents moved into software engineering and computer-use settings, the action interface itself became a first-class design choice. CodeAct~\citep{codeact} unifies agent actions as executable code, which increases compositional flexibility and makes behaviors easier to test and reuse. Devin~\citep{devin}, SWE-agent~\citep{sweagent}, and OpenHands~\citep{openhands} further show that performance depends strongly on how the model is connected to the external environment, whether through integrated coding workflows, specialized Agent--Computer Interfaces, or open agent runtimes. Recent product systems such as Claude Code~\citep{claudecode}, Codex~\citep{codex}, Manus~\citep{manus}, and OpenClaw~\citep{openclaw_rl} reinforce the same trend in practice. However, most existing systems are optimized either for bounded sessions or for coding-centric tasks, leaving long-horizon cross-domain autonomy under controlled context growth comparatively underexplored.
 
 \subsection{Memory and Context Management}
+\label{sec:related_memory}
 
 A second line of work studies how agents retain only behaviorally useful information as trajectories grow. MemGPT~\citep{memgpt} treats the context window as a limited working memory and external storage as archival memory, introducing a paging-style view of agent memory. A-MEM~\citep{amem} instead models memory as a dynamically evolving network of atomic notes and links, enabling richer associative recall. These approaches make long-horizon agents more feasible, but they focus primarily on storage and retrieval.
 
 Recent work increasingly treats context construction itself as a systems problem. LongLLMLingua~\citep{longllmlingua} shows that prompt compression can preserve task-relevant information while reducing long-context cost, and practical context-engineering analyses emphasize that agent quality depends not only on window length but also on what enters the window and in what form~\citep{anthropic_context}. Production systems such as Claude Code~\citep{claudecode} and Manus~\citep{manus} similarly rely on artifact-based tracking and periodic compaction to extend effective horizon. Yet most existing approaches emphasize accumulation, summarization, or retrieval, rather than verification and progressive condensation. GA follows the same goal of extending horizon, but does so by combining hierarchical memory with explicit filtering rules and by treating contextual information density, rather than raw storage volume, as the primary optimization target.
 
 \subsection{Self-Evolution and Experience Distillation}
+\label{sec:related_self_evolution}
 
 Research on self-evolving agents asks how repeated execution can become future capability. A recent survey~\citep{selfevolvesurvey} organizes the space by what evolves, when evolution happens, and what feedback drives improvement. Within this space, Agent-Pro~\citep{agentpro} studies policy-level reflection and optimization, showing that agents can revise their own behavioral policies without updating model parameters. Voyager~\citep{voyager} demonstrates a stronger form of accumulation in a specialized environment by continually storing verified executable skills.
 

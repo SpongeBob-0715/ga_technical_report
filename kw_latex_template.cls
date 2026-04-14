@@ -20,7 +20,7 @@
 \RequirePackage{lipsum}
 \RequirePackage{etoolbox}
 \RequirePackage{fancyhdr}  % custom headers/footers
-\RequirePackage{ulem}  % 引用下划线
+\RequirePackage[normalem]{ulem}  % 保留下划线命令，但不把 \emph 改成下划线
 \DisableLigatures[f]{family=sf*} 
 
 % Graphics %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,5 +1,7 @@
 \input{tables/main_result}
+\input{tables/tool_inventory_overview}
 \subsection{Task completion and token efficiency}
+\label{sec:exp_task_completion}
 In this section, we evaluate GA from five complementary perspectives. 
 (1) We study task completion and token efficiency to measure overall capability and cost effectiveness across benchmarks. 
 (2) We analyze tool-use efficiency to evaluate whether a minimal atomic-tool design can support complex tasks with lower interaction overhead. 
@@ -8,18 +10,15 @@ In this section, we evaluate GA from five complementary perspectives.
 (5) We assess web browsing capability to examine GA's end-to-end browser interaction, multi-hop web search, and real-world web task performance.
 
 \subsubsection{Setup}
-
-\paragraph{Agents and Models.}
+\label{sec:exp_task_completion_setup}
 We compare four representative agent systems, including GA, Claude Code, OpenClaw, and Codex. The backbone models include Claude Sonnet 4.6, Claude Opus 4.6, Minimax M2.7, and GPT-5.4.
 
 \paragraph{Benchmark.}
 We evaluate the systems on three complementary benchmarks. (1) \textbf{SOP-Bench}~\citep{sopbench} tests multi-step SOP execution. (2) \textbf{Lifelong AgentBench}~\citep{lifelongagentbench} tests sequential tasks with cross-task dependency. (3) \textbf{RealFin-benchmark}~\citep{realfin} tests realistic financial tasks that require domain understanding and reliable execution.
 
 \subsubsection{Results}
-
-
-
-\textbf{GA maintains leading or near-leading task completion across different benchmarks.}
+\label{sec:exp_task_completion_results}
+\textbf{GA achieves leading or near-leading task completion across different benchmarks.}
 As shown in Table~\ref{tab:dimension1_task_completion}, this trend is consistent across SOP-Bench, Lifelong AgentBench, and RealFin-benchmark. On the Claude-based runs, GA achieves 100\% accuracy on both SOP-Bench and Lifelong AgentBench, matching the best result on SOP-Bench and outperforming all baselines on Lifelong AgentBench. A similar pattern is observed on RealFin-benchmark, where GA attains the highest accuracy of 65\%, exceeding Claude Code Opus and Codex at 60\%, Claude Code Sonnet at 55\%, and OpenClaw at 35\%.
 
 \textbf{GA requires fewer tokens to complete tasks, especially in terms of input tokens.}
@@ -27,17 +26,15 @@ On SOP-Bench, GA uses 2.02M input tokens, which is lower than OpenClaw at 2.60M 
 
 \textbf{GA achieves the best trade-off between task completion and token cost across benchmarks.}
 On SOP-Bench, Claude Code shows a higher efficiency ratio only at the cost of reduced accuracy, with 85\% versus 100\% for GA, whereas GA maintains full completion. On Lifelong AgentBench, GA achieves both the highest accuracy and the highest efficiency ratio of 4.15, outperforming Claude Code at 0.92 and OpenClaw at 0.48. On RealFin-benchmark, GA again provides the best trade-off, reaching 65\% accuracy with 114k total tokens and an efficiency ratio of 5.70, compared to 2.31 for Claude Code Sonnet, 1.95 for Claude Code Opus, 3.04 for OpenClaw, and 0.67 for Codex.
-
 \subsection{Tool-use efficiency}
 \label{sec:dimension4_tool_use_efficiency}
-
 \subsubsection{Setup}
+\label{sec:exp_tooluse_setup}
 
 \paragraph{Baseline.}
 All compared systems use the same backbone model, Claude Sonnet 4.6. We evaluate three representative tool-use designs. (1) \textbf{GA}, which uses a minimal atomic-tool design based on a small set of general-purpose tools. (2) \textbf{Claude Code}, which serves as a strong baseline with a richer specialized tool ecosystem. (3) \textbf{OpenClaw}, which represents a less minimal multi-tool design with several specialized or environment-dependent capabilities.
 
 \paragraph{Tool.}
-\input{tables/tool_inventory_overview}
 Table~\ref{tab:tool_inventory_overview} first gives a source-level inventory overview. Claude Code exposes 53 built-in tools at the source level (20 base tools and 33 conditional tools), while OpenClaw provides 18 source-level tool factories, with the runtime-visible set further varying by plugin injection and environment configuration. GA does not attempt to reproduce these full inventories one by one. Instead, it keeps only a small set of core atomic tools that cover the capabilities most frequently required in our evaluation tasks, and each of these capabilities has a clear prototype in both Claude Code and OpenClaw. Appendix~\ref{app:atomic_tool_alignment} provides both a capability-level alignment (Table~\ref{tab:appendix_tool_alignment}) and representative task-level substitution examples (Table~\ref{tab:appendix_tool_replacement_examples}).
 
 
@@ -45,6 +42,7 @@ Table~\ref{tab:tool_inventory_overview} first gives a source-level inventory ove
 The benchmark contains two complementary task groups. (1) \textbf{Simple tool-generalization tasks}, which test whether baseline specialized tool capabilities can be reproduced through GA's atomic-tool composition. (2) \textbf{Long-horizon complex tasks}, which test whether the same minimal tool design remains effective on realistic multi-step workflows.
 
 \subsubsection{Atomic Tool Generalization}
+\label{sec:exp_atomic_tool_generalization}
 
 \begin{table*}[t]
 \centering
@@ -70,6 +68,7 @@ OpenClaw & 5 & 80.0\% & 633,101 & 183.1 & 15.0 & 16.6 & 4.2 / 3.2 \\
 \textbf{GA reduces token overhead while preserving task performance.} Although it matches Claude Code on success, GA uses only 188,829 accounted tokens, which is 35.1\% of Claude Code's 537,413 and 29.8\% of OpenClaw's 633,101. The same pattern appears in the interaction trace: GA reduces requests from 32.6 to 11.0 and tool calls from 22.6 to 12.8 relative to Claude Code, while OpenClaw remains both less stable and more expensive. The result indicates that GA's advantage comes from lower context and tool-process overhead, not from sacrificing quality.
 
 \subsubsection{Tool Usage Distribution}
+\label{sec:exp_tool_usage_distribution}
 
 \begin{figure*}[t]
 \centering
@@ -81,6 +80,7 @@ OpenClaw & 5 & 80.0\% & 633,101 & 183.1 & 15.0 & 16.6 & 4.2 / 3.2 \\
 \textbf{Tool usage is highly concentrated in a few high-frequency tools, while the remaining long-tail tools are invoked only rarely.} As shown in Figure~\ref{fig:tooluse_distribution}, although Claude Code and OpenClaw expose dozens of built-in tools or tool factories, their actual execution traces are still dominated by a small subset of tools. In Claude Code, \texttt{AgentTool} alone accounts for 50.4\% of calls, followed by \texttt{WebFetchTool} (22.1\%), \texttt{FileReadTool} (10.6\%), and \texttt{FileWriteTool} (8.9\%), while many other tools appear only in the tail. OpenClaw shows a similar concentration pattern. This means that a substantial number of low-frequency tools still occupy prompt context and enlarge the action space even though they contribute little to actual execution. By comparison, GA makes the active tool loop explicit through a compact atomic-tool set centered on \texttt{code\_run}, \texttt{file\_read}, \texttt{web\_execute\_js}, and \texttt{web\_scan}, which is consistent with its lower request count, lower tool-call count, and lower token cost in Table~\ref{tab:tooluse_long_horizon}.
 
 \subsubsection{Dimension-Wise Tool Efficiency Comparison}
+\label{sec:exp_dimensionwise_tool}
 
 \begin{figure*}[t]
 \centering
@@ -101,6 +101,7 @@ To validate the effectiveness of GA's memory system, we design four experiments.
 (4) we study whether its hierarchical memory management can prevent memory explosion by retrieving memory only when it is actually needed.
 
 \subsubsection{Continuous Efficiency Improvement}
+\label{sec:exp_continuous_efficiency}
 
 Aiming to evaluate whether the condensed memory framework enables GA to improve through continued real-world use, we focus on the agent’s performance trajectory across repeated runs to assess gains in efficiency and reduced token consumption driven by accumulated experience.
 To this end, we compare CodeX, Claude Code, OpenClaw, and GA under the gpt-5.4. 
@@ -121,6 +122,7 @@ Overall, the results show that GA becomes more efficient through continued use, 
 
 
 \subsubsection{Effectiveness of Condensed Memory}
+\label{sec:exp_condensed_memory}
 
 To examine whether our Condensed-Memory, which retains only the key rules that directly affect the final decision, can achieve comparable or better performance at lower cost, we compare four memory settings under the same GA framework with GPT-5.4. 
 The other three settings are 
@@ -153,6 +155,7 @@ Redundant-Memory provided no gain over Condensed-Memory despite using more token
 Overall, this experiment shows that GA benefits most from memory that stores only the small set of task critical information the model does not already know.
 
 \subsubsection{Long-Term Fact Retention}
+\label{sec:exp_longterm_fact}
 
 This experiment examines whether GA has long term factual memory and whether it can remain competitive on factual recall and multi hop reasoning tasks without relying on an additional embedding model or a vector database. 
 The compared methods include embedding based approaches, namely Mem0~\citep{mem0} and A-MEM, and non embedding approaches, namely OpenClaw and GA. 
@@ -185,6 +188,7 @@ Overall, these results show that long term factual memory can be achieved throug
 
 
 \subsubsection{Context Explosion Prevention}
+\label{sec:exp_context_explosion}
 To evaluate whether GA can prevent memory explosion under long term use and continuous skill expansion, we compare GA, Claude Code, CodeX, and OpenClaw after installing 20 skills for each agent and using them intensively over time. 
 We then issue a minimal request ``Hello'' and measure the Full prompt length of each agent to assess how well its memory system controls context growth after prolonged use.
 
@@ -212,6 +216,7 @@ Overall, the results show that GA can preserve long term memory capability witho
 \label{sec:self_evolution_capability}
 
 \subsubsection{Setup}
+\label{sec:exp_selfevolution_setup}
 
 \paragraph{Task and Setting.}
 We evaluate GA's self-evolution process in two complementary settings. The first is a nine-round longitudinal study where GA repeatedly performs similar GitHub research tasks. Each round operates on a different task instance, allowing us to observe how accumulated experience translates into efficiency gains across structurally similar workflows. The second is an eight-task web benchmark used to test whether the same efficiency gains transfer across task types. The longitudinal study reveals the full trajectory from first execution to convergence, while the benchmark study tests whether the same pattern generalizes beyond a single workflow.
@@ -220,6 +225,7 @@ We evaluate GA's self-evolution process in two complementary settings. The first
 We summarize GA's self-evolution into three stages. \textbf{Stage 1: Natural-language execution}, where GA solves the task mainly through in-context reasoning and trial-and-error interaction. \textbf{Stage 2: SOP distillation}, where accumulated experience is compressed into a textual SOP. \textbf{Stage 3: Code-based execution}, where the verified workflow is further converted into executable logic.
 
 \subsubsection{Iteration-Wise Efficiency Trajectory}
+\label{sec:exp_iteration_trajectory}
 
 \begin{table*}[t]
 \centering
@@ -258,6 +264,7 @@ Once the workflow is codified, the system enters a narrow convergence band of ro
 
 
 \subsubsection{Cross-Task Efficiency Gains}
+\label{sec:exp_crosstask_efficiency}
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.99\linewidth]{image/cross_task_convergence.pdf}
@@ -274,6 +281,7 @@ Once the workflow is codified, the system enters a narrow convergence band of ro
 \label{sec:exp_browsing}
 
 \subsubsection{Setup}
+\label{sec:exp_browsing_setup}
 
 We evaluate GA's web browsing capability on three benchmarks.
 \textbf{(1) WebCanvas}~\citep{webcanvas}: 12 tasks measuring basic browser interaction such as navigation, clicking, filtering, and information extraction.
@@ -282,6 +290,7 @@ We evaluate GA's web browsing capability on three benchmarks.
 Both GA and OpenClaw use claude-opus-4-6 as the backbone model.
 
 \subsubsection{Results}
+\label{sec:exp_browsing_results}
 
 As shown in Table~\ref{tab:web_browsing_results}, GA outperforms OpenClaw across all three benchmarks while consuming significantly fewer tokens. On WebCanvas, GA achieves 0.834 score with 0.18M tokens versus OpenClaw's 0.722 score with 0.71M tokens. On BrowseComp-ZH, GA reaches 0.60 accuracy compared to OpenClaw's 0.20, using 0.47M versus 1.31M tokens. On Custom Tasks, GA scores 0.577 versus 0.50, winning 10 tasks against 6, while using only 0.26M tokens compared to 0.76M for OpenClaw.
 
