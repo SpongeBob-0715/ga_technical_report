@@ -27,9 +27,3 @@ Broader general-purpose work mostly evolves the agent through textual abstractio
 
 GA is aligned with this line in viewing reflection as the engine of continual improvement, but it makes a stronger systems claim: the endpoint of reflection should be a \emph{representation shift} from verbose trajectories to compact operational assets. Verified experience is progressively transformed into SOPs, code, and reusable skills, so improvement appears not only as better policy guidance but also as lower inference-time cost. This is why our evaluation emphasizes efficiency convergence and token reduction under repeated execution, rather than only one-shot task success.
 
-\subsection{Web Agents and Observation Efficiency}
-\label{sec:related_web_agents}
-
-Recent web-agent work has shown that browser interaction is a central bottleneck for general-purpose agents. Benchmarks such as WebArena~\citep{webarena}, Mind2Web~\citep{mind2web}, WebCanvas~\citep{webcanvas}, and BrowseComp-ZH~\citep{browsecomp_zh} highlight the difficulty of acting over noisy, dynamic, and information-heavy web environments. At the systems level, OpenClaw~\citep{openclaw_rl} and Manus~\citep{manus} demonstrate the practical value of integrating browser control into agent runtimes.
-
-GA is related to this line, but its focus is not primarily broader website coverage or stronger browser control. Instead, it targets the representation bottleneck between the web page and the model. Structured browser extraction is designed to turn high-entropy DOM observations into compact execution-oriented context before they enter the reasoning loop. This makes the web component part of the same core thesis as the rest of the system: long-horizon autonomy improves when tools, memory, self-evolution, and browser observations are all organized to maximize contextual information density.
