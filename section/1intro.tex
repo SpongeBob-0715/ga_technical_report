@@ -4,6 +4,13 @@ This transition substantially expands their functional scope, while introducing 
 In long-horizon tasks, success depends jointly on the reasoning capability of the underlying model and the system’s ability to manage context, retrieve relevant information, and accumulate useful experience over time.
 These requirements give rise to two fundamental challenges.
 
+
+The first challenge is \textbf{context explosion}. 
+As the agent interacts with the environment, the prompt grows beyond the initial user request. 
+It accumulates tool definitions, retrieved memory, intermediate observations, prior traces, and raw web content. 
+While these components support execution, they are not equally relevant to the next step and even compete with key instructions and evidence. 
+This leads to redundant history, irrelevant memory, and poorly structured compression, which dilute attention and increase errors such as missed constraints, state confusion, and hallucinated facts~\cite{lost_in_middle,multi_turn_lost,anthropic_context}.
+
 The second challenge is \textbf{how to enable effective continual self-evolution}.
 Without mechanisms for distilling experience, agents fail to improve from repeated interactions in long-horizon environments.
 They repeatedly fall into similar failure states, leading to unnecessary token consumption without capability gains.

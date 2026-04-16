@@ -1,0 +1,326 @@
+\subsection{Design Principles}
+\label{sec:principle}
+\begin{AIbox}
+\textbf{Context information density} is the core design constraint for LLM-based agents.
+\end{AIbox}
+
+The central challenge in LLM-based agents is not merely context length, but context quality. Recent studies reveal three compounding failure modes that constrain how effectively models can use their input. First, models exhibit strong positional bias when processing long sequences: relevant information placed in the middle of the context is significantly harder to retrieve than information near the beginning or end~\citep{liu2023lostmiddlelanguagemodels}. Second, irrelevant content does not simply go unused; it can actively degrade performance by diverting attention away from decision-critical evidence~\citep{shi2023largelanguagemodelseasily}. Third, the effective context length of LLMs falls far short of their nominal window size, meaning that part of the provided context is functionally invisible during generation~\citep{an2024doeseffectivecontextlength}.
+
+These three phenomena reinforce one another in practice. As context grows longer, positional bias makes middle-positioned evidence harder to retrieve, irrelevant content competes for the model's limited effective attention, and the declining ratio of effective to nominal context length means that an increasing fraction of the prompt is simply wasted. The result is that, beyond a certain point, adding more context does not improve performance and may instead reduce it.
+
+This has direct implications for agent system design. Existing agent frameworks that rely on monolithic prompt assembly often devote a disproportionate share of the effective context budget to scaffolding, control text, and marginally relevant interaction history. Rather than exposing only decision-relevant information, such strategies displace the evidence most needed for the current step, leaving the agent with more context in volume but less context in utility, while still increasing inference cost.
+
+\textbf{From the perspective of context engineering, this problem is best understood in terms of two primary requirements and one secondary representational constraint:}
+\begin{itemize}
+    \item \textbf{Completeness.} {\small
+    All information required for the current decision must be explicitly present in the context, preventing the model from relying on implicit assumptions or hallucinated completions.
+    }
+
+    \item \textbf{Conciseness.} {\small
+    Irrelevant and redundant information must be eliminated so that attention remains focused on decision-critical signals.
+    }
+
+    \item \textbf{Naturalness.} {\small
+    The context should remain reasonably natural and semantically legible, especially when aggressive compression or artificial encodings make the representation harder for the model to use. This is an important but secondary constraint: in most agent settings, the dominant failure mode is not lack of natural phrasing itself, but the loss of completeness or conciseness.
+    }
+\end{itemize}
+
+We argue that completeness and conciseness define the primary design space for context quality in LLM-based agents. Completeness ensures that the model has the information it needs, while conciseness ensures that this information is not diluted by distracting or low-value content. Naturalness still matters, but mainly as a constraint on how information is represented rather than as the main bottleneck in most agent failures. It helps avoid brittle encodings, overly telegraphic summaries, and artificial formats that the model may parse less reliably. Other commonly discussed dimensions can largely be understood within this framework. For instance, recency serves both completeness, because the latest state is often necessary for the current decision, and conciseness, because outdated information is typically no longer relevant. Relevance, rather than being an independent axis, is better understood as a cross-cutting concern: both completeness and conciseness presuppose a judgment of what matters, the former in deciding what must be included and the latter in deciding what should be removed.
+
+\textbf{Critically, the main structural tension is between completeness and conciseness.} This is not merely a consequence of finite context budgets. Even if the context window were unbounded, a structural tension would remain. The tension is structural rather than merely budgetary for at least three reasons:
+\begin{itemize}
+    \item Including more potentially relevant information improves completeness but weakens conciseness.
+    \item Summarization and compression improve conciseness but risk omitting details needed for completeness.
+    \item Naturalness can sharpen this trade-off in some cases, because highly compressed or artificial representations may be harder for the model to interpret, but this is typically a secondary effect rather than the dominant constraint.
+\end{itemize}
+
+The finite effective context window~\citep{an2024doeseffectivecontextlength} sharpens this tension into a hard practical constraint, but the underlying conflict is structural rather than merely resource-driven. In this sense, context engineering is best viewed not as an equal three-way trilemma, but as a constrained optimization problem centered on balancing completeness and conciseness, with naturalness acting as a supporting constraint on representation.
+
+\textbf{This principle serves as the guiding idea behind the design of GA.} Rather than treating context as a passive byproduct of interaction history, GA systematically optimizes for information density at multiple layers of the system. Its memory hierarchy keeps a lightweight orientation layer visible while leaving richer facts and procedures to explicit reading, preserving conciseness without giving up access to deeper knowledge. Its browser interaction layer represents web pages through semantically structured observations rather than raw HTML, which improves readability while avoiding large amounts of low-value markup in context. Its self-evolution mechanism provides a way to consolidate successful experience into reusable memory and procedures, helping later tasks begin from more compact and task-relevant context. The following subsections describe how each mechanism instantiates this principle in detail.
+
+\subsubsection{Tool Minimality}
+
+
+GA is built on the premise that general-purpose agency does not require tool proliferation: a small set of well-chosen primitives is sufficient, provided that those primitives are functionally complete for the interactions the agent must perform. Following this premise, \textbf{GA uses only nine atomic tools while retaining broad task coverage} across file operations, code execution, web interaction, and system-level actions. This design is enabled by two supporting properties: \textbf{atomicity}, which constrains each tool to an irreducible primitive capability, and \textbf{compositional generalization}, which allows complex behaviors to be realized through sequences of such primitives. Together, these properties make a small tool set sufficient in practice: the agent does not need a separate interface for each task, only primitives that can be recombined to realize it. Table~\ref{tab:tools} summarizes the complete GA tool set.
+
+Why not simply add more specialized tools? Because tool proliferation introduces system-level costs at two levels:
+\begin{itemize}
+    \item \textbf{At the prompt level}, each additional tool enlarges the tool schema and associated instructions injected into the context; in multi-turn interaction, this overhead accumulates and occupies effective context budget that should be reserved for task-relevant information.
+
+    \item \textbf{At the policy level}, each additional tool enlarges the action space and increases ambiguity in tool selection. This makes planning more brittle, weakens the stability of tool-use patterns, and increases the likelihood of execution errors and unnecessary retries.
+\end{itemize}
+Tool minimality is therefore not merely an austerity choice; it is a better operating point that reduces both prompt overhead and decision complexity.
+
+\textbf{Crucially, GA obtains capability through composition rather than tool enumeration.} Its nine tools are designed as reusable primitives, not task-specific interfaces. File workflows emerge from combinations of \texttt{file\_read}, \texttt{file\_patch}, and \texttt{file\_write}; computation and transformation are handled through the general-purpose executor \texttt{code\_run}; and web tasks are realized through the perception--action pair of \texttt{web\_scan} and \texttt{web\_execute\_js}. The remaining tools support the agent's long-horizon control loop: \texttt{ask\_user} acquires missing information, \texttt{update\_working\_checkpoint} maintains short-term task continuity, and \texttt{start\_long\_term\_update} consolidates reusable experience into persistent memory. Thus, GA does not need one tool per task. Broad capability arises from composing a small set of functionally complete primitives. Tool minimality is therefore not a restriction, but the mechanism by which GA preserves general-purpose capability while reducing interaction overhead.
+
+\subsubsection{Hierarchical Memory}
+For a general-purpose agent, the main memory challenge lies less in storage itself than in controlling how much information remains in the active context. In monolithic designs, prior interactions, intermediate states, instructions, and execution traces tend to accumulate as the task unfolds. Over long horizons, this causes the default prompt footprint to grow and consume context budget that is also needed for current reasoning and action. GA is designed around this tension: \textbf{rather than treating all retained information as prompt-resident by default, it keeps only a small always-on layer in view and accesses deeper memory only when needed.}
+
+This leads to a layered memory structure in which the always-on layer is intentionally small. GA keeps an L1 memory index in the system prompt as a compact source of orientation: it records where stable resources are located and which global constraints should remain visible, but it does not carry detailed factual or procedural content itself. Richer knowledge is placed deeper in the hierarchy. Stable cross-task facts are kept in a fact layer, while task-specific know-how is stored as SOPs or executable scripts. These resources remain available to the agent through on-demand access rather than through default inclusion in the active context.
+
+Historical interaction data is handled in the same way. Raw sessions are moved out of the always-on layer, archived, and compressed, so that long-run accumulation does not automatically become default prompt growth. This keeps detailed history available without requiring it to occupy the active context during routine reasoning. In this sense, hierarchy in GA is not only an organizational device; it is what keeps the default prompt footprint small while preserving access to richer history and task knowledge when they are relevant.
+
+GA also separates three memory functions that are often conflated in agent systems, and implements them through different mechanisms rather than a single undifferentiated memory store:
+\begin{itemize}
+    \item \textbf{Working memory} is the task-local continuity buffer. It is updated explicitly through \texttt{update\_working\_checkpoint}, which stores compact task state such as the current objective, constraints, progress, and relevant SOP pointers. This state is then re-injected in subsequent turns together with recent interaction history, allowing the agent to preserve execution continuity across long tasks without reconstructing the full state each time.
+
+    \item \textbf{Always-on memory} is a lightweight orientation layer, not the full persistent memory base. In the implementation, it is injected into the initial system prompt and periodically refreshed during long runs. Its default contents are the working directory, the fixed memory layout, and the compact L1 insight index. This design keeps durable guidance continuously available while avoiding the context cost of loading full L2 factual memory or L3 SOP files by default.
+
+    \item \textbf{Long-term memory} is handled as an explicit post-task consolidation process. Rather than being appended to the prompt at every step, it is written back only when \texttt{start\_long\_term\_update} is triggered after useful experience has been validated. The update procedure follows the memory-management SOP and performs minimal writes to persistent factual memory (L2) or procedural memory (L3), so that only stable and verified knowledge is retained.
+\end{itemize}
+
+These layers therefore differ in lifetime, injection rule, update condition, and context footprint.
+
+The resulting benefit is tighter control over the default prompt footprint. As interaction history grows, memory is no longer carried forward by default simply because more turns have occurred. Instead, the always-on layer remains small, while bulkier history and task knowledge stay in deeper storage and enter the active context through on-demand access. This preserves more of the context window for current reasoning and action. Better retrieval focus and stronger persistence follow from the same structure, but they are secondary to this more basic effect: memory does not steadily displace the active-context budget needed for the task at hand.
+
+
+\subsubsection{Self-Evolution as Experience Consolidation}
+
+If hierarchical memory controls how past information is retained and accessed, self-evolution concerns whether past execution can remain useful beyond the episode in which it occurred.
+
+A general-purpose agent cannot assume that all useful task knowledge is already present in its initial prompt or latent prior. In open environments, many important regularities are local: they concern a specific user's file system, workflow conventions, browser routines, external services, and recurring task patterns. If such knowledge is never retained beyond the current episode, similar tasks may require repeated rediscovery. \textbf{GA is designed to address this problem by supporting experience consolidation across tasks, rather than treating each task as a fully isolated interaction.}
+
+This claim should be stated carefully. Self-evolution in GA is not parameter learning, nor does it imply that every completed task is automatically transformed into persistent knowledge. The underlying model is not updated after each episode. Instead, GA provides a layered external memory structure, explicit update entry points for task-state and long-term memory, and memory-management guidance for deciding what should be retained after execution. In this sense, what can change over time is not the model itself, but the informational environment in which the model operates.
+
+This design is relevant to the context-quality trilemma introduced earlier. Without any mechanism for retaining validated experience, the agent often faces a recurring dilemma on repeated tasks: either replay a longer exploratory process, which weakens conciseness, or act from a shorter but underspecified prompt, which weakens completeness. GA does not eliminate this tension, but it creates a way to reduce it. When useful experience is explicitly consolidated into memory or reusable task procedures, later tasks may begin from a better starting point than pure rediscovery. \textbf{The role of self-evolution in GA is therefore best understood as creating the conditions under which prior successful experience can be reused in a more compact and task-relevant form.}
+
+Just as importantly, GA does not treat all past interaction as equally worth preserving. Raw execution traces contain failed branches, tentative hypotheses, redundant probing, and one-off detours that are useful during search but often undesirable as persistent context. For this reason, self-evolution in GA is better characterized as \textbf{selective consolidation} than as unrestricted memory accumulation. The system provides explicit pathways for updating working state and writing longer-term memory, while its memory-management guidance biases retention toward information grounded in successful execution and away from volatile, weakly verified, or purely situational content. These criteria should be understood as consolidation guidance and operator guidance, not as a claim that the framework already enforces a complete automatic test of validity, stability, or future reuse.
+
+This selective view also clarifies what kind of compression is at stake. GA does not compress all experience into a single canonical representation. Instead, different retained materials occupy different layers of the memory hierarchy. A lightweight insight layer remains visible as a compact orientation signal, while richer factual knowledge, reusable task procedures, and archived session history remain in deeper storage. Self-evolution therefore does not mean that every past task is reduced to one uniform reusable object. Rather, GA provides a concrete path for consolidation through explicit memory-update actions, a layered retention structure, and memory-management guidance, allowing parts of past execution to be preserved in forms that are smaller, more targeted, and potentially more reusable than the original trajectory.
+
+This point also links self-evolution to the two mechanisms discussed above. The relation to tool minimality should be understood carefully. Tool minimality does not by itself produce self-evolution, nor does it establish that fewer tools necessarily yield better consolidation. In GA, however, retained know-how is naturally expressed less as new task-specific interfaces than as reusable ways of sequencing and combining a small set of general primitives. Hierarchical memory, in turn, keeps retained experience from becoming default prompt clutter. In GA, a lightweight orientation layer remains continuously visible, while richer factual and procedural materials are accessed through explicit reading when the agent chooses to inspect them. \textbf{Tool minimality therefore constrains how action is expressed, hierarchical memory governs what remains visible by default, and self-evolution refers to the persistence of selected experience across tasks within that architecture.}
+
+Under this interpretation, self-evolution should be understood not as a guaranteed automatic skill-growth pipeline, but as an architectural capacity for cross-task adaptation. GA supplies the memory layers, update interfaces, and consolidation guidance through which successful experience may persist beyond the episode in which it was acquired. When such retained experience is later read and applied effectively, it can reduce repeated exploratory effort and support better adaptation to a user's local environment. The main claim, however, is architectural rather than empirical: \textbf{GA is built to support experience-driven improvement over time through externalized memory and reusable task procedures, even though the extent and consistency of that improvement depend on what is consolidated, what is later read, and how it is applied in subsequent tasks.}
+
+\subsubsection{Context Truncation and Compression}
+\label{sec:context_truncation_compression}
+
+GenericAgent does not preserve the full interaction history verbatim in the active prompt. Instead, it maintains a compact working context under an approximate character-length budget and progressively reduces older material when the accumulated prompt becomes too large. This mechanism is implemented at the prompt-construction level and should not be interpreted as precise token-level window control.
+
+The implementation combines three distinct layers of context management. The first is a \emph{turn-summary layer}. At the end of each turn, the framework appends one short summary entry to its internal summary list: it uses the model-provided \texttt{<summary>} field when present, and otherwise falls back to a simple summary derived from the physical action of that turn. In subsequent turns, the working prompt injects only the most recent 20 such entries. Thus, what is retained here is a bounded list of one-line turn summaries rather than the last 20 turns in full.
+
+The second is a \emph{task-state layer}. Through the explicit tool \texttt{update\_working\_checkpoint}, the agent may write compact task-critical notes such as user constraints, current findings, file paths, or next-step guidance into \texttt{key\_info} and related fields. Once written, these fields are automatically injected into later working prompts. The checkpoint is therefore explicitly updated by the agent and then automatically carried forward; it is not a background mechanism that autonomously rewrites task state on every turn.
+
+The third is a \emph{raw-history maintenance layer}. Older messages are compressed by format-aware, length-driven truncation rather than by semantic importance estimation. In particular, older \texttt{<thinking>}, \texttt{<tool\_use>}, and \texttt{<tool\_result>} blocks may be shortened by retaining only abbreviated head-and-tail segments, while stale embedded \texttt{<history>} and \texttt{<key\_info>} regions may be replaced with placeholders such as \texttt{[...]} . Accordingly, this mechanism should be understood as tagged-content shortening under length constraints, not as selective preservation of semantically important reasoning content.
+
+When such compression is still insufficient, the system trims the stored message history further. Once the serialized history exceeds the configured approximate budget, older messages are removed from the front, and trimming continues until the retained history falls back below a lower target threshold rather than merely touching the limit. During this process, the implementation also performs lightweight structural hygiene: the remaining history is realigned to begin at a user message, and an initial user message containing tool-result blocks may be rewritten into plain text to avoid leaving an orphaned tool-result fragment at the start of the retained context. This supports a narrow claim of basic structural validity preservation during trimming, but not a stronger claim of semantic reconstruction of prior history.
+
+Related mechanisms also help limit prompt growth at specific tool boundaries. For example, some tool paths support file-based offloading of bulky outputs, and some returned content is shortened before reinsertion into the prompt. However, these should be treated only as tool-specific support for prompt-budget management, not as a general automatic externalization mechanism for all large intermediate artifacts.
+
+Taken together, these mechanisms show that GenericAgent maintains a compact decision state without replaying the entire prior trajectory inside the active prompt. More specifically, it combines bounded injection of recent turn summaries, explicitly updated short-term task-state fields with automatic reinsertion, and length-driven compression and trimming of older history under an approximate character-length budget. These mechanisms are intended to make limited active context more sustainable during multi-step interaction. By themselves, however, they should be read as implementation-level prompt-budget management rather than as direct proof of long-horizon task success under a fixed small context window.
+
+\subsection{Overview of GenericAgent}
+\label{sec:overview}
+GA is a general-purpose LLM agent system that provides automation over a local computing environment. It enables a compatible LLM backend to operate across browsers, terminals, file systems, keyboard and mouse inputs, screen-based perception, and mobile devices through configurable tool adapters. The system is model-agnostic, allowing the underlying reasoning engine (e.g., Claude, GPT, Gemini) to be replaced without affecting execution logic, tool interfaces, or memory architecture. The overall architecture is illustrated in Figure \ref{fig:agent_loop}.
+
+GA is organized around a unified agent loop that connects the model and the environment. At each step, the system combines global memory with the current task specification to form an execution context. The LLM processes this context and produces either direct outputs or tool calls. Tool execution is delegated to external modules, and the results are returned as structured signals that update the system state. This loop defines a continuous interaction between reasoning and environment feedback, enabling tool-grounded iterative execution.
+
+On top of this loop, GA supports two execution modes. \textbf{Interactive execution} handles user-initiated tasks such as code execution, information retrieval, and file operations. \textbf{Reflective execution} runs in the background and is triggered by schedules or system events. It is responsible for monitoring, memory consolidation, and experience distillation. Both modes share the same agent loop and memory system, differing only in initiation and output handling. To support long-horizon operation, GA defines explicit execution bounds that ensure controllability while preserving interruptibility and scope constraints.
+
+After task completion, GA performs memory distillation. Execution traces are compressed into structured long-term representations and stored in shared memory. These representations are reused across both execution modes, allowing accumulated experience to improve future execution through compression and reuse rather than unbounded computation.
+
+\subsection{Core Components of GenericAgent}
+\label{sec:core_design}
+Building on the principles in Section \ref{sec:principle}, we describe the core components of GA, covering the atomic tool set, hierarchical memory management, reflection-driven self-evolution, and structured-extraction-based browser interaction.
+
+\subsubsection{Minimal Atomic Toolset}
+\label{sec:tools}
+
+GA exposes nine atomic tools, grouped into five capability classes.  
+The \textbf{File Operations} class includes \texttt{file\_read}, \texttt{file\_patch}, and \texttt{file\_write} for read, precise edit, and block write operations.  
+The \textbf{Code Execution} class contains \texttt{code\_run}, which runs Python or Bash in a controlled runtime.  
+The \textbf{Web Interaction} class includes \texttt{web\_scan} and \texttt{web\_execute\_js} for low-cost page inspection and precise browser actions.  
+The \textbf{Memory Management} class includes \texttt{update\_working\_checkpoint} and \texttt{start\_long\_term\_update} for short-term context maintenance and long-term memory distillation.  
+The \textbf{Human-in-the-loop} class is \texttt{ask\_user}, used when user decisions are required. 
+Each tool maintains a single responsibility.
+These tools form a complete loop covering state observation, action execution, context preservation, and intervention requests.
+
+GA adopts an authority–responsibility aligned permission model.
+Authority is strictly defined by the injected toolset, and GA cannot self-escalate beyond it.
+With read-only tools, GA can inspect and reason, but cannot modify any state;
+With patch tools, GA can edit text, subject to strict matching and parameter constraints.
+With execution and web-control tools, GA can trigger real system actions, while all interactions return structured outputs through the dispatcher, ensuring full traceability.
+The objective is not to grant unlimited capability, but to enforce controlled capability with aligned risk and clear accountability.
+
+In terms of tool definition, GA represents tool capabilities as a verifiable schema contract and routes execution through a unified dispatcher.
+Each tool defines a name, a description, and a set of parameters described by JSON Schema, all under a consistent type function format.
+At runtime, this schema is injected into the interface, allowing GA to produce structured \texttt{tool\_use} calls with explicit names and arguments.
+The dispatcher maps each call to a local executor and manages pre- and post-execution handling together with the returned results.
+This brings a clear separation between declaration, invocation, and execution. 
+It does not need to know how tools are implemented; it only needs to follow a stable interface contract.
+GA then resolves each call against that contract and dispatches it to the concrete handler, separating call semantics from implementation details.
+
+
+
+GA also specifically optimizes each atomic tool for decision efficiency and token economy.  
+\texttt{file\_read} supports segmented reads (\texttt{start}/\texttt{count}), keyword anchoring, and line-number output, so GA can inspect only relevant regions.  
+\texttt{file\_patch} enforces unique \texttt{old\_content} matching and fails fast on zero or multiple matches, reducing silent multi-location edits.  
+\texttt{web\_scan} returns a simplified page view with tab metadata, which lowers full-DOM inspection cost.  
+\texttt{web\_execute\_js} returns action results plus page-change observations, so many workflows proceed without another full scan.  
+GA does not merely expose raw operations.  
+It recasts real-world operations into low-ambiguity, verifiable, and cost-aware decision interfaces.
+
+In summary, GA is not designed to make the model "do more."  
+It is designed to define what can be done, constrain how it is done, and record what was done.  
+Through atomic tool abstraction, schema contracts, unified dispatch, and structured receipts, GA aligns capability boundaries, risk boundaries, and accountability boundaries within a single operating framework.
+
+% \begin{table}[t]
+%     \centering
+%     \caption{Atomic tools in GA.}
+%     \label{tab:tools}
+%     {\footnotesize
+%     \setlength{\tabcolsep}{1.2pt}
+%     \renewcommand{\arraystretch}{0.9}
+%     \begin{tabularx}{\linewidth}{@{}p{0.25\linewidth}@{\hspace{4pt}}X@{}}
+%     \toprule
+%     \rowcolor{blue!8}
+%     \textbf{Tool} & \multicolumn{1}{c}{\textbf{Brief Description}} \\
+%     \midrule
+%     \mbox{\texttt{code\_run}} &
+%     Execute Python or shell code with timeout and abort control. \\
+%     \mbox{\texttt{file\_read}} &
+%     Read local files by line range, with optional keyword-based lookup. \\
+%     \mbox{\texttt{file\_write}} &
+%     Create new files or write large content blocks (overwrite/append/prepend). \\
+%     \mbox{\texttt{file\_patch}} &
+%     Apply precise, context-checked updates to existing file regions. \\
+%     \mbox{\texttt{web\_scan}} &
+%     Extract the current browser page as simplified HTML or text, with tab metadata. \\
+%     \mbox{\texttt{web\_execute\_js}} &
+%     Inject and execute JavaScript in the user’s browser, capturing return values. \\
+%     \mbox{\texttt{ask\_user}} &
+%     Issue a synchronous query to the user and wait for an explicit response. \\
+%     \mbox{\texttt{update\_working\_checkpoint}} &
+%     Update a short-term working notepad injected in subsequent reasoning turns. \\
+%     \mbox{\texttt{start\_long\_term\_update}} &
+%     Trigger long-term memory distillation over recent execution traces. \\
+%     \bottomrule
+%     \end{tabularx}
+%     }
+% \end{table}
+
+
+\subsubsection{Hierarchical Memory Architecture}
+\label{sec:memory}
+GA’s memory management mechanism does not directly append all historical information into the context. 
+Instead, it organizes knowledge through hierarchical structuring, on-demand retrieval, and procedural consolidation.
+This design helps the agent stay coherent in long runs and turn validated experience into durable knowledge.
+
+GA starts with a global meta-memory layer.  
+This layer defines the memory map, core rules, and update boundaries.  
+At task start, GA injects this layer first.  
+It gives the model a shared frame of reference before execution.  
+The model knows how memory is organized, what each layer is for, and how updates should be handled.  
+This reduces arbitrary writes, historical misreads, and cross-task leakage.
+
+Below the meta-memory, long-term memory is split into three layers with distinct roles.
+\textbf{(1)L1 is the index layer.} 
+It stores compact pointers, including high-frequency entry points, keyword mappings, and a small set of hard constraints.  
+Its main role is fast navigation. It enables efficient memory routing and ensures that relevant information can be quickly located. It works as a directory that guides GA toward appropriate SOPs, factual records, and core constraints for a given task type.
+\textbf{(2) L2 is the fact layer.}
+This layer stores verified and stable factual information that remains valid over long periods.
+Admission is strict.
+It includes environment paths, fixed configurations, persistent constraints, and system properties that can be repeatedly confirmed.
+Information is only written into L2 after it has been validated through execution and proven reusable across tasks.
+Transient states, one-time events, and unverified hypotheses are excluded.
+Updates to L2 are performed through small and traceable modifications rather than large-scale overwrites.
+This design prevents short-term noise from being stored as long-term facts.
+\textbf{(3) L3 is the SOP layer.}
+This layer stores reusable procedural knowledge.
+It includes task workflows, preconditions, key execution steps, common failure cases, and corresponding debugging or recovery strategies.
+Entries in L3 must come from real execution.
+They must also be validated across multiple tasks.
+Only knowledge that can directly guide error analysis or be reused in future tasks is included in this layer. 
+These three layers form a continuous memory chain.
+GA first uses L1 for routing and memory localization.
+It then retrieves L2 to constrain reasoning with verified facts.
+Finally, it applies L3 to obtain actionable procedures for execution.
+This layered workflow improves both retrieval efficiency and execution reliability in long-horizon tasks.
+
+During runtime, it uses an on-demand loading strategy. 
+GA first injects only the minimal required information, including the meta-memory and the L1 index layer.
+Additional factual or procedural knowledge is retrieved only when needed during execution.
+This reduces irrelevant context noise and improves token efficiency.
+It also ensures that context budget is allocated to task-relevant information.
+
+For long-term consolidation, GA uses a triggered commit mechanism instead of immediate writing.
+When information is identified as potentially valuable, it enters a validation stage.
+Its usefulness and reusability are checked before being committed.
+Only verified information is written into L2 or L3 through small, incremental updates.
+The L1 index is updated accordingly. This separation between execution and memory writing reduces incorrect updates and prevents memory bloat.
+
+In addition to long-term memory, GA maintains a session-level working memory.
+It is treated as short-term operational cache and is not automatically promoted to long-term memory unless it satisfies the consolidation criteria.
+It mainly records the current goal, intermediate conclusions, key constraints, and next actions.
+This memory is continuously injected across turns to maintain task continuity.
+After each step, a compact summary is generated to form a rolling execution trace.
+This prevents degradation of context quality in long conversations.
+
+
+\subsubsection{Self-Evolution Capability in GA}
+\label{sec:self-evolution}
+The self-evolution capability of GA is realized through a fixed execution loop that continuously improves its behavior over time. In each iteration, GA first retrieves prior experience together with the current task state, then performs actions through external tools, and feeds the results back into the next decision step. Finally, strategies that are verified to be effective are distilled and stored as long-term experience. In this way, capability improvement is transformed from an implicit reasoning process into an explicit and continuously optimizable execution pipeline.
+
+This loop is enabled by a clear separation between base tools and higher-level evolving capabilities. 
+Base tools remain atomic and task-agnostic, covering only fundamental operations. 
+Task-specific strategies are not embedded in these tools, but represented as reusable skills and SOP-like knowledge units.
+As a result, capability improvements do not require changes to tool implementations. 
+
+Memory is designed to support both decision making and stable execution over long tasks. 
+At task startup, GA loads relevant prior experience to provide an initial plan and direction. 
+During execution, each step stores a small summary of the current state, including key decisions, constraints, and progress. 
+This allows GA to keep track of what has been done without storing the full history. 
+As a result, the model does not need to re-derive the task context at every step, and it avoids drifting away from the original strategy in long-horizon execution.
+
+To ensure reliable self-evolution, GA does not store raw execution traces directly. Instead, it only updates long-term memory at specific consolidation points.
+At these points, GA summarizes the task trajectory into useful and reusable knowledge. It keeps successful strategies and key decisions, and removes temporary or noisy information that is not stable or transferable.
+In addition, GA uses a fallback mechanism to correct the strategy when it detects repeated failures or unproductive loops. This prevents the system from reinforcing wrong behaviors.
+
+
+% \subsubsection{上下文压缩}
+
+
+\subsection{Subagent}
+
+
+
+
+
+% GA is not a fixed prompt wrapped around a model. It is an agent system whose internal behavior is continuously shaped by execution, while its external interface remains stable and minimal.
+
+% During task execution, GA transforms raw execution traces into \textbf{structured representations} of its own decisions, rather than leaving them as unorganized dialogue history. As similar tasks recur, these representations are progressively distilled and compressed into reusable strategies and executable skills, enabling future problem solving to rely less on repeated ad-hoc reasoning and more on internal skill composition. This reduces redundant reasoning over time, leading to lower token consumption in repeated or structurally similar tasks. Specifically, this mechanism consists of three stages.
+
+% \textbf{Stage 1: Experience Distillation into SOPs.} GA analyzes historical execution traces to extract useful information, including successful decision paths and failure patterns. These are abstracted into SOPs that describe stable execution logic.
+
+% This stage serves two purposes. First, it generalizes instance-level behavior into reusable process specifications. Second, it prioritizes high-frequency and high-error tasks. Routine or low-impact steps are discarded to improve compression and generalization.
+
+% \textbf{Stage 2: SOP Compilation into Code.} SOPs with stable structure are evaluated for compilation. If a task shows clear parameterization, deterministic logic, and explicit dependencies, it is converted into code.
+
+% This replaces procedural reasoning with program execution. Execution becomes structured and deterministic. Compared to SOPs, code provides clearer semantics and more stable behavior under repeated execution.
+
+% \textbf{Stage 3: Registration as Skills.} Compiled code modules are registered as Skills in GA’s indexing system. Skills are reusable execution units. Similar tasks can directly invoke them, without intermediate reasoning.
+
+% GA monitors Skill usage and updates implementations over time. Updates include interface simplification, parameter refinement, and execution optimization. This improves efficiency per token.
+
+% These stages form a closed loop. Reflection extracts experience, SOPs generalize behavior, code replaces reasoning, and Skills enable reuse. This process improves efficiency over time and reduces redundant computation. 
+
+% \subsubsection{Selective Extraction for Web Browser}
+% \label{sec:structured_extraction}
+% Interacting with web pages is expensive in tokens. A full DOM often contains tens of thousands of tokens, while only a small portion is useful for the current task. Sending the full DOM to the model is not practical. At the same time, aggressive filtering may remove important signals. GA addresses this with a two-stage extraction pipeline.
+
+% \textbf{Geometry-aware DOM pruning.} A JavaScript routine clones the DOM with access to layout information. Invisible nodes are removed, including hidden elements, zero-area nodes, and off-screen content. Modal dialogs and cookie banners are explicitly detected by their viewport coverage and moved to the top level. Form states such as input values and checkboxes are preserved during cloning. This ensures the snapshot matches the actual visible page state.
+
+% \textbf{Token-budget compression.} The pruned DOM is further compressed using structural filtering. Non-semantic attributes are removed. URLs are shortened. Decorative metadata is dropped. The page structure is preserved, but the token cost is greatly reduced. Large list structures are handled separately. The system detects lists using layout regularity and structural signals. Only a small number of representative items are kept. The rest are replaced with a placeholder that records the approximate size and content pattern. This keeps the structure while avoiding full expansion.
+
+% When the result still exceeds the token budget, a recursive truncation step is applied. The reduction is distributed across subtrees instead of using a flat cutoff. This preserves global structure.
+
+% After each browser action, GA does not re-read the full page. Each action is wrapped with a pre- and post-state snapshot. The model receives only the diff and transient UI signals such as toasts or loading indicators. This reduces redundant observation and tightens the interaction loop.
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 \subsection{Design Principles}
 \label{sec:principle}
 \begin{AIbox}
-The design of gain is governed by the principle of \textbf{maximizing contextual information density}. The core goal is to encode the most complete decision-relevant information using the fewest possible tokens.
+The design of GenericAgent (GA) is governed by the principle of \textbf{maximizing contextual information density}. The core goal is to encode the most complete decision-relevant information using the fewest possible tokens.
 \end{AIbox}
 
 In practice, performance degradation in LLM-based agents rarely comes from insufficient context length. It is more often caused by inefficient context organization. Redundant information dilutes attention, irrelevant historical memory interferes with current reasoning, and overly compressed representations obscure semantic structure and reduce reliability. These failure modes share a common cause: low information density. To address this, GA requires that all contextual content satisfy three constraints:
@@ -32,11 +32,11 @@ This minimal tool set yields two direct benefits. First, it significantly reduce
 Besides, GA does not rely on specialized tools to expand functionality. Instead, complex behaviors are composed from atomic primitives. For example, file-level operations follow a standard read–modify–write paradigm, while web interactions are decomposed into content retrieval and browser-side execution. External capabilities are encapsulated as Skills and invoked indirectly through general-purpose code-execution and web-related primitives, and are loaded into the context only on demand. 
 
 \subsubsection{Hierarchical Memory}
-\label{sec:hierarchical_memory} It aggressively filters out redundant signals and preserves only experience that introduces non-trivial behavioral change. The objective is to maximize the marginal impact of each retained interaction on future decisions, ensuring that stored experience directly shapes and improves GA's behavior.
+\label{sec:hierarchical_memory} The hierarchical memory system aggressively filters out redundant signals and preserves only experience that introduces non-trivial behavioral change. The objective is to maximize the marginal impact of each retained interaction on future decisions, ensuring that stored experience directly shapes and improves GA's behavior.
 
 The memory system follows a four-layer architecture with hierarchical distillation and taxonomy-based organization. It focuses on keeping only behaviorally useful knowledge. L0 defines constraints. L1 handles routing. L2 stores verified facts. L3 captures reusable experience. Together, they allow GA to operate within a fixed context budget while maximizing the utility of each token.
 
-\subsubsection{Reflection-Driven Adaptation}
+\subsubsection{Reflection-Driven Slef-evolving}
 \label{sec:reflection_adaptation} It preserves semantic integrity while reducing reasoning cost. Through periodic reflection, GA analyzes historical execution traces and converts them into structured knowledge. These structures are then organized into executable forms. The evolution is guided by user task distributions and behavioral patterns, ensuring alignment with real-world usage and observed failures.
 
 
@@ -116,7 +116,7 @@ Overall, GA builds an extremely compact tool system through capability compressi
 \label{sec:memory}
 GA follows a four-layer architecture with hierarchical distillation and taxonomy-based organization.
 
-\textbf{L0: Meta-Rule Layer.}  L0 defines the core behavioral constraints of GA. It acts as a lightweight control layer for system operation and self-regulation. Each rule is written in a single sentence. For example: ``Only information verified through execution can be written to long-term memory.'' This rule prevent unverified or hallucinated information from entering long-term memory. L0 is injected into the system prompt at startup with minimal overhead and remains fixed during execution.
+\textbf{L0: Meta-Rule Layer.}  L0 defines the core behavioral constraints of GA. It acts as a lightweight control layer for system operation and self-regulation. Each rule is written in a single sentence. For example: ``Only information verified through execution can be written to long-term memory.'' This rule prevents unverified or hallucinated information from entering long-term memory. L0 is injected into the system prompt at startup with minimal overhead and remains fixed during execution.
 
 \textbf{L1: Index Layer.} L1 provides a lightweight index for memory routing. It stores only metadata, file paths, short descriptions, and applicability conditions. It does not store full content.
 
@@ -151,9 +151,9 @@ GA monitors Skill usage and updates implementations over time. Updates include i
 
 These stages form a closed loop. Reflection extracts experience, SOPs generalize behavior, code replaces reasoning, and Skills enable reuse. This process improves efficiency over time and reduces redundant computation. 
 
-\subsubsection{Structured Extraction for Efficient Browser Interaction}
+\subsubsection{Selective Extraction for Web Browser}
 \label{sec:structured_extraction}
-Interacting with web pages is expensive in tokens. A full DOM often contains tens of thousands of tokens, while only a small portion is useful for the current task. Sending the full DOM to the model is not practical. At the same time, aggressive filtering may remove important signals. GA address this with a two-stage extraction pipeline.
+Interacting with web pages is expensive in tokens. A full DOM often contains tens of thousands of tokens, while only a small portion is useful for the current task. Sending the full DOM to the model is not practical. At the same time, aggressive filtering may remove important signals. GA addresses this with a two-stage extraction pipeline.
 
 \textbf{Geometry-aware DOM pruning.} A JavaScript routine clones the DOM with access to layout information. Invisible nodes are removed, including hidden elements, zero-area nodes, and off-screen content. Modal dialogs and cookie banners are explicitly detected by their viewport coverage and moved to the top level. Form states such as input values and checkboxes are preserved during cloning. This ensures the snapshot matches the actual visible page state.
 

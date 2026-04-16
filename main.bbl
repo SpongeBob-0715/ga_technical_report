@@ -10,6 +10,21 @@ Xingyao Wang et~al.
 \newblock Openclaw-rl: Training agents via interaction.
 \newblock {\em arXiv preprint arXiv:2603.10165}, 2026.
 
+\bibitem{lost_in_middle}
+Lost in the middle: How language models use long contexts.
+\newblock \url{https://arxiv.org/abs/2307.03172}, 2023.
+
+\bibitem{multi_turn_lost}
+Llms get lost in multi-turn conversation.
+\newblock \url{https://arxiv.org/abs/2505.06120}, 2025.
+
+\bibitem{anthropic_context}
+Aditya Rajasekaran et~al.
+\newblock Effective context engineering for ai agents.
+\newblock
+  \url{https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents},
+  September 2025.
+
 \bibitem{sopbench}
 Subhrangshu Nandi, Arghya Datta, Rohith Nama, Udita Patel, Nikhil Vichare,
   Indranil Bhattacharya, Prince Grover, Shivam Asija, Giuseppe Carenini, Wei
@@ -136,13 +151,6 @@ Huiqiang Jiang, Qianhui Wu, Xufang Luo, Dongsheng Li, Chin-Yew Lin, Yuqing
   scenarios via prompt compression.
 \newblock In {\em Proceedings of the 62nd Annual Meeting of the Association for
   Computational Linguistics (Volume 1: Long Papers)}, 2024.
-
-\bibitem{anthropic_context}
-Aditya Rajasekaran et~al.
-\newblock Effective context engineering for ai agents.
-\newblock
-  \url{https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents},
-  September 2025.
 
 \bibitem{selfevolvesurvey}
 Zhiyuan Gao et~al.

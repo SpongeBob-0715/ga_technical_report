@@ -8,167 +8,161 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \citation{claudecode}
 \citation{openclaw_rl}
+\citation{lost_in_middle,multi_turn_lost,anthropic_context}
 \providecommand \oddpage@label [2]{}
 \babel@aux{english}{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
 \newlabel{sec:intro@cref}{{[section][1][]1}{[1][1][]1}{}{}{}}
+\citation{liu2023lostmiddlelanguagemodels}
+\citation{shi2023largelanguagemodelseasily}
+\citation{an2024doeseffectivecontextlength}
 \@writefile{toc}{\contentsline {section}{\numberline {2}GenericAgent}{2}{section.2}\protected@file@percent }
 \newlabel{sec:method}{{2}{2}{GenericAgent}{section.2}{}}
 \newlabel{sec:method@cref}{{[section][2][]2}{[1][2][]2}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Design Principles}{2}{subsection.2.1}\protected@file@percent }
 \newlabel{sec:principle}{{2.1}{2}{Design Principles}{subsection.2.1}{}}
 \newlabel{sec:principle@cref}{{[subsection][1][2]2.1}{[1][2][]2}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Tool Minimality}{3}{subsubsection.2.1.1}\protected@file@percent }
-\newlabel{sec:tool_minimality}{{2.1.1}{3}{Tool Minimality}{subsubsection.2.1.1}{}}
-\newlabel{sec:tool_minimality@cref}{{[subsubsection][1][2,1]2.1.1}{[1][3][]3}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Hierarchical Memory}{3}{subsubsection.2.1.2}\protected@file@percent }
-\newlabel{sec:hierarchical_memory}{{2.1.2}{3}{Hierarchical Memory}{subsubsection.2.1.2}{}}
-\newlabel{sec:hierarchical_memory@cref}{{[subsubsection][2][2,1]2.1.2}{[1][3][]3}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Reflection-Driven Adaptation}{3}{subsubsection.2.1.3}\protected@file@percent }
-\newlabel{sec:reflection_adaptation}{{2.1.3}{3}{Reflection-Driven Adaptation}{subsubsection.2.1.3}{}}
-\newlabel{sec:reflection_adaptation@cref}{{[subsubsection][3][2,1]2.1.3}{[1][3][]3}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}Structured Browser Extraction}{3}{subsubsection.2.1.4}\protected@file@percent }
-\newlabel{sec:browser_extraction}{{2.1.4}{3}{Structured Browser Extraction}{subsubsection.2.1.4}{}}
-\newlabel{sec:browser_extraction@cref}{{[subsubsection][4][2,1]2.1.4}{[1][3][]3}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Overview of GenericAgent}{3}{subsection.2.2}\protected@file@percent }
-\newlabel{sec:overview}{{2.2}{3}{Overview of GenericAgent}{subsection.2.2}{}}
-\newlabel{sec:overview@cref}{{[subsection][2][2]2.2}{[1][3][]3}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Overall framework of GA.} GA follows a unified agent loop that constructs an execution context from the current task and relevant memory, generates outputs or tool calls, and updates the system through structured feedback. It is built on four core mechanisms: a minimal tool set, hierarchical memory, reflection-driven self-evolution, and structured browser extraction.}}{4}{figure.caption.1}\protected@file@percent }
+\citation{an2024doeseffectivecontextlength}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Tool Minimality}{4}{subsubsection.2.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Hierarchical Memory}{4}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Self-Evolution as Experience Consolidation}{5}{subsubsection.2.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}Context Truncation and Compression}{6}{subsubsection.2.1.4}\protected@file@percent }
+\newlabel{sec:context_truncation_compression}{{2.1.4}{6}{Context Truncation and Compression}{subsubsection.2.1.4}{}}
+\newlabel{sec:context_truncation_compression@cref}{{[subsubsection][4][2,1]2.1.4}{[1][6][]6}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Overview of GenericAgent}{7}{subsection.2.2}\protected@file@percent }
+\newlabel{sec:overview}{{2.2}{7}{Overview of GenericAgent}{subsection.2.2}{}}
+\newlabel{sec:overview@cref}{{[subsection][2][2]2.2}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Core Components of GenericAgent}{8}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:core_design}{{2.3}{8}{Core Components of GenericAgent}{subsection.2.3}{}}
+\newlabel{sec:core_design@cref}{{[subsection][3][2]2.3}{[1][8][]8}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Minimal Atomic Toolset}{8}{subsubsection.2.3.1}\protected@file@percent }
+\newlabel{sec:tools}{{2.3.1}{8}{Minimal Atomic Toolset}{subsubsection.2.3.1}{}}
+\newlabel{sec:tools@cref}{{[subsubsection][1][2,3]2.3.1}{[1][8][]8}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Hierarchical Memory Architecture}{8}{subsubsection.2.3.2}\protected@file@percent }
+\newlabel{sec:memory}{{2.3.2}{8}{Hierarchical Memory Architecture}{subsubsection.2.3.2}{}}
+\newlabel{sec:memory@cref}{{[subsubsection][2][2,3]2.3.2}{[1][8][]8}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Self-Evolution Capability in GA}{9}{subsubsection.2.3.3}\protected@file@percent }
+\newlabel{sec:self-evolution}{{2.3.3}{9}{Self-Evolution Capability in GA}{subsubsection.2.3.3}{}}
+\newlabel{sec:self-evolution@cref}{{[subsubsection][3][2,3]2.3.3}{[1][9][]9}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Task completion rate and token efficiency across the main agent benchmarks and RealFin-benchmark.} Each block reports the original metrics used in the corresponding benchmark. Since the efficiency ratio is normalized with different token scales across benchmarks, its absolute values should only be compared within the same benchmark block.}}{10}{table.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:agent_loop}{{1}{4}{\textbf {Overall framework of GA.} GA follows a unified agent loop that constructs an execution context from the current task and relevant memory, generates outputs or tool calls, and updates the system through structured feedback. It is built on four core mechanisms: a minimal tool set, hierarchical memory, reflection-driven self-evolution, and structured browser extraction}{figure.caption.1}{}}
-\newlabel{fig:agent_loop@cref}{{[figure][1][]1}{[1][3][]4}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Core Components of GenericAgent}{4}{subsection.2.3}\protected@file@percent }
-\newlabel{sec:core_design}{{2.3}{4}{Core Components of GenericAgent}{subsection.2.3}{}}
-\newlabel{sec:core_design@cref}{{[subsection][3][2]2.3}{[1][4][]4}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Atomic tools in GA.}}{5}{table.caption.2}\protected@file@percent }
-\newlabel{tab:tools}{{1}{5}{Atomic tools in GA}{table.caption.2}{}}
-\newlabel{tab:tools@cref}{{[table][1][]1}{[1][5][]5}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Minimal Atomic Toolset}{5}{subsubsection.2.3.1}\protected@file@percent }
-\newlabel{sec:tools}{{2.3.1}{5}{Minimal Atomic Toolset}{subsubsection.2.3.1}{}}
-\newlabel{sec:tools@cref}{{[subsubsection][1][2,3]2.3.1}{[1][4][]5}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Hierarchical Memory Architecture}{5}{subsubsection.2.3.2}\protected@file@percent }
-\newlabel{sec:memory}{{2.3.2}{5}{Hierarchical Memory Architecture}{subsubsection.2.3.2}{}}
-\newlabel{sec:memory@cref}{{[subsubsection][2][2,3]2.3.2}{[1][5][]5}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Reflection-Driven Self-Evolution Pipeline}{6}{subsubsection.2.3.3}\protected@file@percent }
-\newlabel{sec:self-evolution}{{2.3.3}{6}{Reflection-Driven Self-Evolution Pipeline}{subsubsection.2.3.3}{}}
-\newlabel{sec:self-evolution@cref}{{[subsubsection][3][2,3]2.3.3}{[1][6][]6}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.4}Structured Extraction for Efficient Browser Interaction}{6}{subsubsection.2.3.4}\protected@file@percent }
-\newlabel{sec:structured_extraction}{{2.3.4}{6}{Structured Extraction for Efficient Browser Interaction}{subsubsection.2.3.4}{}}
-\newlabel{sec:structured_extraction@cref}{{[subsubsection][4][2,3]2.3.4}{[1][6][]6}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {Task completion rate and token efficiency across the main agent benchmarks and RealFin-benchmark.} Each block reports the original metrics used in the corresponding benchmark. Since the efficiency ratio is normalized with different token scales across benchmarks, its absolute values should only be compared within the same benchmark block.}}{7}{table.caption.3}\protected@file@percent }
-\newlabel{tab:dimension1_task_completion}{{2}{7}{\textbf {Task completion rate and token efficiency across the main agent benchmarks and RealFin-benchmark.} Each block reports the original metrics used in the corresponding benchmark. Since the efficiency ratio is normalized with different token scales across benchmarks, its absolute values should only be compared within the same benchmark block}{table.caption.3}{}}
-\newlabel{tab:dimension1_task_completion@cref}{{[table][2][]2}{[1][7][]7}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Evaluation}{7}{section.3}\protected@file@percent }
-\newlabel{sec:eval}{{3}{7}{Evaluation}{section.3}{}}
-\newlabel{sec:eval@cref}{{[section][3][]3}{[1][7][]7}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task completion and token efficiency}{7}{subsection.3.1}\protected@file@percent }
-\newlabel{sec:exp_task_completion}{{3.1}{7}{Task completion and token efficiency}{subsection.3.1}{}}
-\newlabel{sec:exp_task_completion@cref}{{[subsection][1][3]3.1}{[1][7][]7}{}{}{}}
+\newlabel{tab:dimension1_task_completion}{{1}{10}{\textbf {Task completion rate and token efficiency across the main agent benchmarks and RealFin-benchmark.} Each block reports the original metrics used in the corresponding benchmark. Since the efficiency ratio is normalized with different token scales across benchmarks, its absolute values should only be compared within the same benchmark block}{table.caption.1}{}}
+\newlabel{tab:dimension1_task_completion@cref}{{[table][1][]1}{[1][10][]10}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Subagent}{10}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Evaluation}{10}{section.3}\protected@file@percent }
+\newlabel{sec:eval}{{3}{10}{Evaluation}{section.3}{}}
+\newlabel{sec:eval@cref}{{[section][3][]3}{[1][10][]10}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task completion and token efficiency}{10}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:exp_task_completion}{{3.1}{10}{Task completion and token efficiency}{subsection.3.1}{}}
+\newlabel{sec:exp_task_completion@cref}{{[subsection][1][3]3.1}{[1][10][]10}{}{}{}}
 \citation{sopbench}
 \citation{lifelongagentbench}
 \citation{realfin}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces \textbf  {Source-level tool inventory overview of Claude Code, OpenClaw, and GA.} We list representative native tools for Claude Code and OpenClaw and show the full atomic tool set of GA. The counts refer to source-level built-in tools/tool factories rather than the exact runtime-visible tool set, which may vary with configuration, feature flags, permissions, and plugin-based dynamic injection.}}{8}{table.caption.4}\protected@file@percent }
-\newlabel{tab:tool_inventory_overview}{{3}{8}{\textbf {Source-level tool inventory overview of Claude Code, OpenClaw, and GA.} We list representative native tools for Claude Code and OpenClaw and show the full atomic tool set of GA. The counts refer to source-level built-in tools/tool factories rather than the exact runtime-visible tool set, which may vary with configuration, feature flags, permissions, and plugin-based dynamic injection}{table.caption.4}{}}
-\newlabel{tab:tool_inventory_overview@cref}{{[table][3][]3}{[1][7][]8}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Setup}{8}{subsubsection.3.1.1}\protected@file@percent }
-\newlabel{sec:exp_task_completion_setup}{{3.1.1}{8}{Setup}{subsubsection.3.1.1}{}}
-\newlabel{sec:exp_task_completion_setup@cref}{{[subsubsection][1][3,1]3.1.1}{[1][8][]8}{}{}{}}
-\@writefile{toc}{\contentsline {paragraph}{Benchmark.}{8}{subsubsection.3.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Results}{8}{subsubsection.3.1.2}\protected@file@percent }
-\newlabel{sec:exp_task_completion_results}{{3.1.2}{8}{Results}{subsubsection.3.1.2}{}}
-\newlabel{sec:exp_task_completion_results@cref}{{[subsubsection][2][3,1]3.1.2}{[1][8][]8}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \textbf  {Aggregated results on long-horizon complex tasks.} This table reports the average outcomes over the long-horizon task set rather than expanding into per-task detail.}}{9}{table.caption.5}\protected@file@percent }
-\newlabel{tab:tooluse_long_horizon}{{4}{9}{\textbf {Aggregated results on long-horizon complex tasks.} This table reports the average outcomes over the long-horizon task set rather than expanding into per-task detail}{table.caption.5}{}}
-\newlabel{tab:tooluse_long_horizon@cref}{{[table][4][]4}{[1][9][]9}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Tool-use efficiency}{9}{subsection.3.2}\protected@file@percent }
-\newlabel{sec:dimension4_tool_use_efficiency}{{3.2}{9}{Tool-use efficiency}{subsection.3.2}{}}
-\newlabel{sec:dimension4_tool_use_efficiency@cref}{{[subsection][2][3]3.2}{[1][9][]9}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Setup}{9}{subsubsection.3.2.1}\protected@file@percent }
-\newlabel{sec:exp_tooluse_setup}{{3.2.1}{9}{Setup}{subsubsection.3.2.1}{}}
-\newlabel{sec:exp_tooluse_setup@cref}{{[subsubsection][1][3,2]3.2.1}{[1][9][]9}{}{}{}}
-\@writefile{toc}{\contentsline {paragraph}{Baseline.}{9}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Tool.}{9}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Benchmark.}{9}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Atomic Tool Generalization}{9}{subsubsection.3.2.2}\protected@file@percent }
-\newlabel{sec:exp_atomic_tool_generalization}{{3.2.2}{9}{Atomic Tool Generalization}{subsubsection.3.2.2}{}}
-\newlabel{sec:exp_atomic_tool_generalization@cref}{{[subsubsection][2][3,2]3.2.2}{[1][9][]9}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Tool Usage Distribution}{9}{subsubsection.3.2.3}\protected@file@percent }
-\newlabel{sec:exp_tool_usage_distribution}{{3.2.3}{9}{Tool Usage Distribution}{subsubsection.3.2.3}{}}
-\newlabel{sec:exp_tool_usage_distribution@cref}{{[subsubsection][3][3,2]3.2.3}{[1][9][]9}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {Tool usage distribution across Claude Code, OpenClaw, and GA.} Each donut chart summarizes the proportion of tool calls attributed to each major tool category in the corresponding system.}}{10}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:tooluse_distribution}{{2}{10}{\textbf {Tool usage distribution across Claude Code, OpenClaw, and GA.} Each donut chart summarizes the proportion of tool calls attributed to each major tool category in the corresponding system}{figure.caption.6}{}}
-\newlabel{fig:tooluse_distribution@cref}{{[figure][2][]2}{[1][9][]10}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Dimension-wise radar comparison of tool-use efficiency.} The four panels correspond to ambiguity resolution, long-chain composition, constrained planning, and atomic-tool generalization. Each radar chart compares Claude Code, OpenClaw, and GA on success, quality score, token cost, request count, and tool-call count. Token, request, and tool-call axes are inverted so that larger area consistently indicates better overall efficiency.}}{10}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:tooluse_dimensionwise_radar}{{3}{10}{\textbf {Dimension-wise radar comparison of tool-use efficiency.} The four panels correspond to ambiguity resolution, long-chain composition, constrained planning, and atomic-tool generalization. Each radar chart compares Claude Code, OpenClaw, and GA on success, quality score, token cost, request count, and tool-call count. Token, request, and tool-call axes are inverted so that larger area consistently indicates better overall efficiency}{figure.caption.7}{}}
-\newlabel{fig:tooluse_dimensionwise_radar@cref}{{[figure][3][]3}{[1][10][]10}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Dimension-Wise Tool Efficiency Comparison}{10}{subsubsection.3.2.4}\protected@file@percent }
-\newlabel{sec:exp_dimensionwise_tool}{{3.2.4}{10}{Dimension-Wise Tool Efficiency Comparison}{subsubsection.3.2.4}{}}
-\newlabel{sec:exp_dimensionwise_tool@cref}{{[subsubsection][4][3,2]3.2.4}{[1][10][]10}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {Source-level tool inventory overview of Claude Code, OpenClaw, and GA.} We list representative native tools for Claude Code and OpenClaw and show the full atomic tool set of GA. The counts refer to source-level built-in tools/tool factories rather than the exact runtime-visible tool set, which may vary with configuration, feature flags, permissions, and plugin-based dynamic injection.}}{11}{table.caption.2}\protected@file@percent }
+\newlabel{tab:tool_inventory_overview}{{2}{11}{\textbf {Source-level tool inventory overview of Claude Code, OpenClaw, and GA.} We list representative native tools for Claude Code and OpenClaw and show the full atomic tool set of GA. The counts refer to source-level built-in tools/tool factories rather than the exact runtime-visible tool set, which may vary with configuration, feature flags, permissions, and plugin-based dynamic injection}{table.caption.2}{}}
+\newlabel{tab:tool_inventory_overview@cref}{{[table][2][]2}{[1][10][]11}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Setup}{11}{subsubsection.3.1.1}\protected@file@percent }
+\newlabel{sec:exp_task_completion_setup}{{3.1.1}{11}{Setup}{subsubsection.3.1.1}{}}
+\newlabel{sec:exp_task_completion_setup@cref}{{[subsubsection][1][3,1]3.1.1}{[1][10][]11}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmark.}{11}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Results}{11}{subsubsection.3.1.2}\protected@file@percent }
+\newlabel{sec:exp_task_completion_results}{{3.1.2}{11}{Results}{subsubsection.3.1.2}{}}
+\newlabel{sec:exp_task_completion_results@cref}{{[subsubsection][2][3,1]3.1.2}{[1][11][]11}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Tool-use efficiency}{11}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:dimension4_tool_use_efficiency}{{3.2}{11}{Tool-use efficiency}{subsection.3.2}{}}
+\newlabel{sec:dimension4_tool_use_efficiency@cref}{{[subsection][2][3]3.2}{[1][11][]11}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces \textbf  {Aggregated results on long-horizon complex tasks.} This table reports the average outcomes over the long-horizon task set rather than expanding into per-task detail.}}{12}{table.caption.3}\protected@file@percent }
+\newlabel{tab:tooluse_long_horizon}{{3}{12}{\textbf {Aggregated results on long-horizon complex tasks.} This table reports the average outcomes over the long-horizon task set rather than expanding into per-task detail}{table.caption.3}{}}
+\newlabel{tab:tooluse_long_horizon@cref}{{[table][3][]3}{[1][12][]12}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Setup}{12}{subsubsection.3.2.1}\protected@file@percent }
+\newlabel{sec:exp_tooluse_setup}{{3.2.1}{12}{Setup}{subsubsection.3.2.1}{}}
+\newlabel{sec:exp_tooluse_setup@cref}{{[subsubsection][1][3,2]3.2.1}{[1][11][]12}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Baseline.}{12}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tool.}{12}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark.}{12}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Atomic Tool Generalization}{12}{subsubsection.3.2.2}\protected@file@percent }
+\newlabel{sec:exp_atomic_tool_generalization}{{3.2.2}{12}{Atomic Tool Generalization}{subsubsection.3.2.2}{}}
+\newlabel{sec:exp_atomic_tool_generalization@cref}{{[subsubsection][2][3,2]3.2.2}{[1][12][]12}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Tool Usage Distribution}{12}{subsubsection.3.2.3}\protected@file@percent }
+\newlabel{sec:exp_tool_usage_distribution}{{3.2.3}{12}{Tool Usage Distribution}{subsubsection.3.2.3}{}}
+\newlabel{sec:exp_tool_usage_distribution@cref}{{[subsubsection][3][3,2]3.2.3}{[1][12][]12}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Tool usage distribution across Claude Code, OpenClaw, and GA.} Each donut chart summarizes the proportion of tool calls attributed to each major tool category in the corresponding system.}}{13}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:tooluse_distribution}{{1}{13}{\textbf {Tool usage distribution across Claude Code, OpenClaw, and GA.} Each donut chart summarizes the proportion of tool calls attributed to each major tool category in the corresponding system}{figure.caption.4}{}}
+\newlabel{fig:tooluse_distribution@cref}{{[figure][1][]1}{[1][12][]13}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {Dimension-wise radar comparison of tool-use efficiency.} The four panels correspond to ambiguity resolution, long-chain composition, constrained planning, and atomic-tool generalization. Each radar chart compares Claude Code, OpenClaw, and GA on success, quality score, token cost, request count, and tool-call count. Token, request, and tool-call axes are inverted so that larger area consistently indicates better overall efficiency.}}{13}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:tooluse_dimensionwise_radar}{{2}{13}{\textbf {Dimension-wise radar comparison of tool-use efficiency.} The four panels correspond to ambiguity resolution, long-chain composition, constrained planning, and atomic-tool generalization. Each radar chart compares Claude Code, OpenClaw, and GA on success, quality score, token cost, request count, and tool-call count. Token, request, and tool-call axes are inverted so that larger area consistently indicates better overall efficiency}{figure.caption.5}{}}
+\newlabel{fig:tooluse_dimensionwise_radar@cref}{{[figure][2][]2}{[1][13][]13}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Dimension-Wise Tool Efficiency Comparison}{13}{subsubsection.3.2.4}\protected@file@percent }
+\newlabel{sec:exp_dimensionwise_tool}{{3.2.4}{13}{Dimension-Wise Tool Efficiency Comparison}{subsubsection.3.2.4}{}}
+\newlabel{sec:exp_dimensionwise_tool@cref}{{[subsubsection][4][3,2]3.2.4}{[1][13][]13}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Memory System Effectiveness}{13}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:exp_memory}{{3.3}{13}{Memory System Effectiveness}{subsection.3.3}{}}
+\newlabel{sec:exp_memory@cref}{{[subsection][3][3]3.3}{[1][13][]13}{}{}{}}
 \citation{sopbench}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Operation time and token consumption across five repeated runs for different agents. While the baseline agents remain relatively stable over time, GA shows a clear efficiency convergence pattern, with both runtime and token cost decreasing substantially as task experience is accumulated and distilled into reusable memory.}}{11}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:memory}{{4}{11}{Operation time and token consumption across five repeated runs for different agents. While the baseline agents remain relatively stable over time, GA shows a clear efficiency convergence pattern, with both runtime and token cost decreasing substantially as task experience is accumulated and distilled into reusable memory}{figure.caption.8}{}}
-\newlabel{fig:memory@cref}{{[figure][4][]4}{[1][11][]11}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Memory System Effectiveness}{11}{subsection.3.3}\protected@file@percent }
-\newlabel{sec:exp_memory}{{3.3}{11}{Memory System Effectiveness}{subsection.3.3}{}}
-\newlabel{sec:exp_memory@cref}{{[subsection][3][3]3.3}{[1][11][]11}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Continuous Efficiency Improvement}{11}{subsubsection.3.3.1}\protected@file@percent }
-\newlabel{sec:exp_continuous_efficiency}{{3.3.1}{11}{Continuous Efficiency Improvement}{subsubsection.3.3.1}{}}
-\newlabel{sec:exp_continuous_efficiency@cref}{{[subsubsection][1][3,3]3.3.1}{[1][11][]11}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Effectiveness of Condensed Memory}{11}{subsubsection.3.3.2}\protected@file@percent }
-\newlabel{sec:exp_condensed_memory}{{3.3.2}{11}{Effectiveness of Condensed Memory}{subsubsection.3.3.2}{}}
-\newlabel{sec:exp_condensed_memory@cref}{{[subsubsection][2][3,3]3.3.2}{[1][11][]11}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Operation time and token consumption across five repeated runs for different agents. While the baseline agents remain relatively stable over time, GA shows a clear efficiency convergence pattern, with both runtime and token cost decreasing substantially as task experience is accumulated and distilled into reusable memory.}}{14}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:memory}{{3}{14}{Operation time and token consumption across five repeated runs for different agents. While the baseline agents remain relatively stable over time, GA shows a clear efficiency convergence pattern, with both runtime and token cost decreasing substantially as task experience is accumulated and distilled into reusable memory}{figure.caption.6}{}}
+\newlabel{fig:memory@cref}{{[figure][3][]3}{[1][14][]14}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Continuous Efficiency Improvement}{14}{subsubsection.3.3.1}\protected@file@percent }
+\newlabel{sec:exp_continuous_efficiency}{{3.3.1}{14}{Continuous Efficiency Improvement}{subsubsection.3.3.1}{}}
+\newlabel{sec:exp_continuous_efficiency@cref}{{[subsubsection][1][3,3]3.3.1}{[1][14][]14}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Effectiveness of Condensed memory}{14}{subsubsection.3.3.2}\protected@file@percent }
+\newlabel{sec:exp_condensed_memory}{{3.3.2}{14}{Effectiveness of Condensed memory}{subsubsection.3.3.2}{}}
+\newlabel{sec:exp_condensed_memory@cref}{{[subsubsection][2][3,3]3.3.2}{[1][14][]14}{}{}{}}
 \citation{mem0}
 \citation{locomo}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Memory ablation on SOP-Bench dangerous\_goods. Condensed memory achieves the best cost-effectiveness.}}{12}{table.caption.9}\protected@file@percent }
-\newlabel{tab:memory_ablation}{{5}{12}{Memory ablation on SOP-Bench dangerous\_goods. Condensed memory achieves the best cost-effectiveness}{table.caption.9}{}}
-\newlabel{tab:memory_ablation@cref}{{[table][5][]5}{[1][11][]12}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Long-term factual memory evaluation on LoCoMo. GA outperforms embedding-based systems without using external retrieval.}}{12}{table.caption.10}\protected@file@percent }
-\newlabel{tab:long_term_memory}{{6}{12}{Long-term factual memory evaluation on LoCoMo. GA outperforms embedding-based systems without using external retrieval}{table.caption.10}{}}
-\newlabel{tab:long_term_memory@cref}{{[table][6][]6}{[1][12][]12}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Long-Term Fact Retention}{12}{subsubsection.3.3.3}\protected@file@percent }
-\newlabel{sec:exp_longterm_fact}{{3.3.3}{12}{Long-Term Fact Retention}{subsubsection.3.3.3}{}}
-\newlabel{sec:exp_longterm_fact@cref}{{[subsubsection][3][3,3]3.3.3}{[1][12][]12}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Context Explosion Prevention}{12}{subsubsection.3.3.4}\protected@file@percent }
-\newlabel{sec:exp_context_explosion}{{3.3.4}{12}{Context Explosion Prevention}{subsubsection.3.3.4}{}}
-\newlabel{sec:exp_context_explosion@cref}{{[subsubsection][4][3,3]3.3.4}{[1][12][]12}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Full prompt length after installing 20 skills and intensive usage, measured on a minimal input. GA prevents context explosion.}}{13}{table.caption.11}\protected@file@percent }
-\newlabel{tab:context_explosion}{{7}{13}{Full prompt length after installing 20 skills and intensive usage, measured on a minimal input. GA prevents context explosion}{table.caption.11}{}}
-\newlabel{tab:context_explosion@cref}{{[table][7][]7}{[1][13][]13}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces \textbf  {Nine-round evolution trajectory on similar GitHub research tasks.} The experiment starts from scratch in Round \#1, iteratively refines a textual SOP in Rounds \#2--\#5, and enters the codified execution regime in Rounds \#6--\#9. Reduction Ratio measures relative decrease against the first run or the no-SOP baseline.}}{13}{table.caption.12}\protected@file@percent }
-\newlabel{tab:self_evolution_rounds}{{8}{13}{\textbf {Nine-round evolution trajectory on similar GitHub research tasks.} The experiment starts from scratch in Round \#1, iteratively refines a textual SOP in Rounds \#2--\#5, and enters the codified execution regime in Rounds \#6--\#9. Reduction Ratio measures relative decrease against the first run or the no-SOP baseline}{table.caption.12}{}}
-\newlabel{tab:self_evolution_rounds@cref}{{[table][8][]8}{[1][13][]13}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Self-Evolution Capability}{13}{subsection.3.4}\protected@file@percent }
-\newlabel{sec:self_evolution_capability}{{3.4}{13}{Self-Evolution Capability}{subsection.3.4}{}}
-\newlabel{sec:self_evolution_capability@cref}{{[subsection][4][3]3.4}{[1][13][]13}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Setup}{13}{subsubsection.3.4.1}\protected@file@percent }
-\newlabel{sec:exp_selfevolution_setup}{{3.4.1}{13}{Setup}{subsubsection.3.4.1}{}}
-\newlabel{sec:exp_selfevolution_setup@cref}{{[subsubsection][1][3,4]3.4.1}{[1][13][]13}{}{}{}}
-\@writefile{toc}{\contentsline {paragraph}{Task and Setting.}{13}{subsubsection.3.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Evolution Stages.}{13}{subsubsection.3.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {Cross-task token convergence across repeated runs for OpenClaw and GA.} Each panel corresponds to one benchmark task and plots total token consumption over the first, second, and third executions.}}{14}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:cross_task_convergence}{{5}{14}{\textbf {Cross-task token convergence across repeated runs for OpenClaw and GA.} Each panel corresponds to one benchmark task and plots total token consumption over the first, second, and third executions}{figure.caption.13}{}}
-\newlabel{fig:cross_task_convergence@cref}{{[figure][5][]5}{[1][14][]14}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Iteration-Wise Efficiency Trajectory}{14}{subsubsection.3.4.2}\protected@file@percent }
-\newlabel{sec:exp_iteration_trajectory}{{3.4.2}{14}{Iteration-Wise Efficiency Trajectory}{subsubsection.3.4.2}{}}
-\newlabel{sec:exp_iteration_trajectory@cref}{{[subsubsection][2][3,4]3.4.2}{[1][13][]14}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Cross-Task Efficiency Gains}{14}{subsubsection.3.4.3}\protected@file@percent }
-\newlabel{sec:exp_crosstask_efficiency}{{3.4.3}{14}{Cross-Task Efficiency Gains}{subsubsection.3.4.3}{}}
-\newlabel{sec:exp_crosstask_efficiency@cref}{{[subsubsection][3][3,4]3.4.3}{[1][14][]14}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Memory ablation on SOP-Bench dangerous\_goods. Condensed memory achieves the best cost-effectiveness.}}{15}{table.caption.7}\protected@file@percent }
+\newlabel{tab:memory_ablation}{{4}{15}{Memory ablation on SOP-Bench dangerous\_goods. Condensed memory achieves the best cost-effectiveness}{table.caption.7}{}}
+\newlabel{tab:memory_ablation@cref}{{[table][4][]4}{[1][14][]15}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Long-term factual memory evaluation on LoCoMo. GA outperforms embedding-based systems without using external retrieval.}}{15}{table.caption.8}\protected@file@percent }
+\newlabel{tab:long_term_memory}{{5}{15}{Long-term factual memory evaluation on LoCoMo. GA outperforms embedding-based systems without using external retrieval}{table.caption.8}{}}
+\newlabel{tab:long_term_memory@cref}{{[table][5][]5}{[1][15][]15}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Long-Term Fact Retention}{15}{subsubsection.3.3.3}\protected@file@percent }
+\newlabel{sec:exp_longterm_fact}{{3.3.3}{15}{Long-Term Fact Retention}{subsubsection.3.3.3}{}}
+\newlabel{sec:exp_longterm_fact@cref}{{[subsubsection][3][3,3]3.3.3}{[1][15][]15}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Context Explosion Prevention}{15}{subsubsection.3.3.4}\protected@file@percent }
+\newlabel{sec:exp_context_explosion}{{3.3.4}{15}{Context Explosion Prevention}{subsubsection.3.3.4}{}}
+\newlabel{sec:exp_context_explosion@cref}{{[subsubsection][4][3,3]3.3.4}{[1][15][]15}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Full prompt length after installing 20 skills and intensive usage, measured on a minimal input. GA prevents context explosion.}}{16}{table.caption.9}\protected@file@percent }
+\newlabel{tab:context_explosion}{{6}{16}{Full prompt length after installing 20 skills and intensive usage, measured on a minimal input. GA prevents context explosion}{table.caption.9}{}}
+\newlabel{tab:context_explosion@cref}{{[table][6][]6}{[1][15][]16}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces \textbf  {Nine-round evolution trajectory on the LangChain GitHub research task.} The experiment starts from scratch in Round \#1, iteratively refines a textual SOP in Rounds \#2--\#5, and enters the codified execution regime in Rounds \#6--\#9.}}{16}{table.caption.10}\protected@file@percent }
+\newlabel{tab:self_evolution_rounds}{{7}{16}{\textbf {Nine-round evolution trajectory on the LangChain GitHub research task.} The experiment starts from scratch in Round \#1, iteratively refines a textual SOP in Rounds \#2--\#5, and enters the codified execution regime in Rounds \#6--\#9}{table.caption.10}{}}
+\newlabel{tab:self_evolution_rounds@cref}{{[table][7][]7}{[1][16][]16}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Self-Evolution Capability}{16}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:self_evolution_capability}{{3.4}{16}{Self-Evolution Capability}{subsection.3.4}{}}
+\newlabel{sec:self_evolution_capability@cref}{{[subsection][4][3]3.4}{[1][16][]16}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Setup}{16}{subsubsection.3.4.1}\protected@file@percent }
+\newlabel{sec:exp_selfevolution_setup}{{3.4.1}{16}{Setup}{subsubsection.3.4.1}{}}
+\newlabel{sec:exp_selfevolution_setup@cref}{{[subsubsection][1][3,4]3.4.1}{[1][16][]16}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Task and Setting.}{16}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evolution Stages.}{16}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Iteration-Wise Efficiency Trajectory}{16}{subsubsection.3.4.2}\protected@file@percent }
+\newlabel{sec:exp_iteration_trajectory}{{3.4.2}{16}{Iteration-Wise Efficiency Trajectory}{subsubsection.3.4.2}{}}
+\newlabel{sec:exp_iteration_trajectory@cref}{{[subsubsection][2][3,4]3.4.2}{[1][16][]16}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Cross-task token convergence across repeated runs for OpenClaw and GA.} Each panel corresponds to one benchmark task and plots total token consumption over the first, second, and third executions.}}{17}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:cross_task_convergence}{{4}{17}{\textbf {Cross-task token convergence across repeated runs for OpenClaw and GA.} Each panel corresponds to one benchmark task and plots total token consumption over the first, second, and third executions}{figure.caption.11}{}}
+\newlabel{fig:cross_task_convergence@cref}{{[figure][4][]4}{[1][17][]17}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Cross-Task Efficiency Gains}{17}{subsubsection.3.4.3}\protected@file@percent }
+\newlabel{sec:exp_crosstask_efficiency}{{3.4.3}{17}{Cross-Task Efficiency Gains}{subsubsection.3.4.3}{}}
+\newlabel{sec:exp_crosstask_efficiency@cref}{{[subsubsection][3][3,4]3.4.3}{[1][17][]17}{}{}{}}
 \citation{webcanvas}
 \citation{browsecomp_zh}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Web browsing evaluation results across three benchmarks. GA and OpenClaw both use claude-opus-4-6 as the backbone model.}}{15}{table.caption.14}\protected@file@percent }
-\newlabel{tab:web_browsing_results}{{9}{15}{Web browsing evaluation results across three benchmarks. GA and OpenClaw both use claude-opus-4-6 as the backbone model}{table.caption.14}{}}
-\newlabel{tab:web_browsing_results@cref}{{[table][9][]9}{[1][15][]15}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Web Browsing Capability}{15}{subsection.3.5}\protected@file@percent }
-\newlabel{sec:exp_browsing}{{3.5}{15}{Web Browsing Capability}{subsection.3.5}{}}
-\newlabel{sec:exp_browsing@cref}{{[subsection][5][3]3.5}{[1][15][]15}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Setup}{15}{subsubsection.3.5.1}\protected@file@percent }
-\newlabel{sec:exp_browsing_setup}{{3.5.1}{15}{Setup}{subsubsection.3.5.1}{}}
-\newlabel{sec:exp_browsing_setup@cref}{{[subsubsection][1][3,5]3.5.1}{[1][15][]15}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}Results}{15}{subsubsection.3.5.2}\protected@file@percent }
-\newlabel{sec:exp_browsing_results}{{3.5.2}{15}{Results}{subsubsection.3.5.2}{}}
-\newlabel{sec:exp_browsing_results@cref}{{[subsubsection][2][3,5]3.5.2}{[1][15][]15}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Web browsing evaluation results across three benchmarks. GA and OpenClaw both use claude-opus-4-6 as the backbone model.}}{18}{table.caption.12}\protected@file@percent }
+\newlabel{tab:web_browsing_results}{{8}{18}{Web browsing evaluation results across three benchmarks. GA and OpenClaw both use claude-opus-4-6 as the backbone model}{table.caption.12}{}}
+\newlabel{tab:web_browsing_results@cref}{{[table][8][]8}{[1][18][]18}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Web Browsing Capability}{18}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:exp_browsing}{{3.5}{18}{Web Browsing Capability}{subsection.3.5}{}}
+\newlabel{sec:exp_browsing@cref}{{[subsection][5][3]3.5}{[1][18][]18}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Setup}{18}{subsubsection.3.5.1}\protected@file@percent }
+\newlabel{sec:exp_browsing_setup}{{3.5.1}{18}{Setup}{subsubsection.3.5.1}{}}
+\newlabel{sec:exp_browsing_setup@cref}{{[subsubsection][1][3,5]3.5.1}{[1][18][]18}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}Results}{18}{subsubsection.3.5.2}\protected@file@percent }
+\newlabel{sec:exp_browsing_results}{{3.5.2}{18}{Results}{subsubsection.3.5.2}{}}
+\newlabel{sec:exp_browsing_results@cref}{{[subsubsection][2][3,5]3.5.2}{[1][18][]18}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Related Work}{18}{section.4}\protected@file@percent }
+\newlabel{sec:related}{{4}{18}{Related Work}{section.4}{}}
+\newlabel{sec:related@cref}{{[section][4][]4}{[1][18][]18}{}{}{}}
 \citation{react}
 \citation{reflexion}
 \citation{autogpt}
@@ -194,89 +188,88 @@
 \citation{flex}
 \citation{agentevolver}
 \citation{selfevolvinglifelong}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Related Work}{16}{section.4}\protected@file@percent }
-\newlabel{sec:related}{{4}{16}{Related Work}{section.4}{}}
-\newlabel{sec:related@cref}{{[section][4][]4}{[1][16][]16}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}LLM-Based Agent Systems and Action Interfaces}{16}{subsection.4.1}\protected@file@percent }
-\newlabel{sec:related_llm_agents}{{4.1}{16}{LLM-Based Agent Systems and Action Interfaces}{subsection.4.1}{}}
-\newlabel{sec:related_llm_agents@cref}{{[subsection][1][4]4.1}{[1][16][]16}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Memory and Context Management}{16}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:related_memory}{{4.2}{16}{Memory and Context Management}{subsection.4.2}{}}
-\newlabel{sec:related_memory@cref}{{[subsection][2][4]4.2}{[1][16][]16}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Self-Evolution and Experience Distillation}{16}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:related_self_evolution}{{4.3}{16}{Self-Evolution and Experience Distillation}{subsection.4.3}{}}
-\newlabel{sec:related_self_evolution@cref}{{[subsection][3][4]4.3}{[1][16][]16}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{17}{section.5}\protected@file@percent }
-\newlabel{sec:conclusion}{{5}{17}{Conclusion}{section.5}{}}
-\newlabel{sec:conclusion@cref}{{[section][5][]5}{[1][17][]17}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}LLM-Based Agent Systems and Action Interfaces}{19}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:related_llm_agents}{{4.1}{19}{LLM-Based Agent Systems and Action Interfaces}{subsection.4.1}{}}
+\newlabel{sec:related_llm_agents@cref}{{[subsection][1][4]4.1}{[1][19][]19}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Memory and Context Management}{19}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:related_memory}{{4.2}{19}{Memory and Context Management}{subsection.4.2}{}}
+\newlabel{sec:related_memory@cref}{{[subsection][2][4]4.2}{[1][19][]19}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Self-Evolution and Experience Distillation}{19}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:related_self_evolution}{{4.3}{19}{Self-Evolution and Experience Distillation}{subsection.4.3}{}}
+\newlabel{sec:related_self_evolution@cref}{{[subsection][3][4]4.3}{[1][19][]19}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{20}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{20}{Conclusion}{section.5}{}}
+\newlabel{sec:conclusion@cref}{{[section][5][]5}{[1][20][]20}{}{}{}}
 \bibstyle{unsrt}
 \bibdata{main}
 \bibcite{claudecode}{{1}{}{{}}{{}}}
 \bibcite{openclaw_rl}{{2}{}{{}}{{}}}
-\bibcite{sopbench}{{3}{}{{}}{{}}}
-\bibcite{lifelongagentbench}{{4}{}{{}}{{}}}
-\bibcite{realfin}{{5}{}{{}}{{}}}
-\bibcite{mem0}{{6}{}{{}}{{}}}
-\bibcite{locomo}{{7}{}{{}}{{}}}
-\bibcite{webcanvas}{{8}{}{{}}{{}}}
-\bibcite{browsecomp_zh}{{9}{}{{}}{{}}}
-\bibcite{react}{{10}{}{{}}{{}}}
-\bibcite{reflexion}{{11}{}{{}}{{}}}
-\bibcite{autogpt}{{12}{}{{}}{{}}}
-\bibcite{metagpt}{{13}{}{{}}{{}}}
-\bibcite{codeact}{{14}{}{{}}{{}}}
-\bibcite{devin}{{15}{}{{}}{{}}}
-\bibcite{sweagent}{{16}{}{{}}{{}}}
-\bibcite{openhands}{{17}{}{{}}{{}}}
-\bibcite{codex}{{18}{}{{}}{{}}}
-\bibcite{manus}{{19}{}{{}}{{}}}
-\bibcite{memgpt}{{20}{}{{}}{{}}}
-\bibcite{amem}{{21}{}{{}}{{}}}
-\bibcite{longllmlingua}{{22}{}{{}}{{}}}
-\bibcite{anthropic_context}{{23}{}{{}}{{}}}
-\bibcite{selfevolvesurvey}{{24}{}{{}}{{}}}
-\bibcite{agentpro}{{25}{}{{}}{{}}}
-\bibcite{voyager}{{26}{}{{}}{{}}}
-\bibcite{evolver}{{27}{}{{}}{{}}}
-\bibcite{flex}{{28}{}{{}}{{}}}
-\bibcite{agentevolver}{{29}{}{{}}{{}}}
-\bibcite{selfevolvinglifelong}{{30}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Author Contributions}{20}{section.6}\protected@file@percent }
-\newlabel{sec:contributions}{{6}{20}{Author Contributions}{section.6}{}}
-\newlabel{sec:contributions@cref}{{[section][6][]6}{[1][20][]20}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1}Atomic Tool Alignment}{20}{subsection.6.1}\protected@file@percent }
-\newlabel{app:atomic_tool_alignment}{{1}{20}{Atomic Tool Alignment}{subsection.6.1}{}}
-\newlabel{app:atomic_tool_alignment@cref}{{[subsection][1][6]1}{[1][20][]20}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces \textbf  {Capability-level alignment of the basic tooling environment.} Each row maps one capability category to the corresponding tool in Claude Code, OpenClaw, and GA.}}{20}{table.caption.15}\protected@file@percent }
-\newlabel{tab:appendix_tool_alignment}{{10}{20}{\textbf {Capability-level alignment of the basic tooling environment.} Each row maps one capability category to the corresponding tool in Claude Code, OpenClaw, and GA}{table.caption.15}{}}
-\newlabel{tab:appendix_tool_alignment@cref}{{[table][10][]10}{[1][20][]20}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces \textbf  {Representative task-level substitutions from specialized tools to GA atomic-tool compositions.} Each row shows one concrete capability test, the original specialized tool or mechanism used by the baseline system, and the corresponding GA composition that can complete the same class of task.}}{21}{table.caption.16}\protected@file@percent }
-\newlabel{tab:appendix_tool_replacement_examples}{{11}{21}{\textbf {Representative task-level substitutions from specialized tools to GA atomic-tool compositions.} Each row shows one concrete capability test, the original specialized tool or mechanism used by the baseline system, and the corresponding GA composition that can complete the same class of task}{table.caption.16}{}}
-\newlabel{tab:appendix_tool_replacement_examples@cref}{{[table][11][]11}{[1][20][]21}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2}Web Browsing Visualization}{22}{subsection.6.2}\protected@file@percent }
-\newlabel{app:web_browsing_visualization}{{2}{22}{Web Browsing Visualization}{subsection.6.2}{}}
-\newlabel{app:web_browsing_visualization@cref}{{[subsection][2][6]2}{[1][22][]22}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \textbf  {Token consumption and normalized score across three web browsing benchmarks.} The left axis shows total token consumption in millions (M), while the right axis shows normalized scores on a 0--1 scale. GA consistently achieves competitive or superior performance while consuming significantly fewer tokens than OpenClaw across all three benchmarks.}}{22}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:web_browsing_dual_axis}{{6}{22}{\textbf {Token consumption and normalized score across three web browsing benchmarks.} The left axis shows total token consumption in millions (M), while the right axis shows normalized scores on a 0--1 scale. GA consistently achieves competitive or superior performance while consuming significantly fewer tokens than OpenClaw across all three benchmarks}{figure.caption.17}{}}
-\newlabel{fig:web_browsing_dual_axis@cref}{{[figure][6][]6}{[1][22][]22}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3}Case Studies}{22}{subsection.6.3}\protected@file@percent }
-\newlabel{app:case_studies}{{3}{22}{Case Studies}{subsection.6.3}{}}
-\newlabel{app:case_studies@cref}{{[subsection][3][6]3}{[1][22][]22}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1}Case A1. Tool Use: API Procurement Workflow}{23}{subsubsection.6.3.1}\protected@file@percent }
-\newlabel{app:case_tools}{{3.1}{23}{Case A1. Tool Use: API Procurement Workflow}{subsubsection.6.3.1}{}}
-\newlabel{app:case_tools@cref}{{[subsubsection][1][6,3]3.1}{[1][22][]23}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cross-system comparison on the long-horizon procurement task.}}{24}{table.caption.18}\protected@file@percent }
-\newlabel{tab:appendix_tool_case}{{12}{24}{Cross-system comparison on the long-horizon procurement task}{table.caption.18}{}}
-\newlabel{tab:appendix_tool_case@cref}{{[table][12][]12}{[1][24][]24}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2}Case A2. Memory: Dangerous-Goods Hazard Classification}{24}{subsubsection.6.3.2}\protected@file@percent }
-\newlabel{app:case_memory}{{3.2}{24}{Case A2. Memory: Dangerous-Goods Hazard Classification}{subsubsection.6.3.2}{}}
-\newlabel{app:case_memory@cref}{{[subsubsection][2][6,3]3.2}{[1][24][]24}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3}Case A3. Self-Evolution: GitHub PR Research}{26}{subsubsection.6.3.3}\protected@file@percent }
-\newlabel{app:case_self_evolution}{{3.3}{26}{Case A3. Self-Evolution: GitHub PR Research}{subsubsection.6.3.3}{}}
-\newlabel{app:case_self_evolution@cref}{{[subsubsection][3][6,3]3.3}{[1][26][]26}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4}Case A4. Web Browsing: BrowseComp-ZH Reasoning Chain}{28}{subsubsection.6.3.4}\protected@file@percent }
-\newlabel{app:case_browsing}{{3.4}{28}{Case A4. Web Browsing: BrowseComp-ZH Reasoning Chain}{subsubsection.6.3.4}{}}
-\newlabel{app:case_browsing@cref}{{[subsubsection][4][6,3]3.4}{[1][28][]28}{}{}{}}
+\bibcite{lost_in_middle}{{3}{}{{}}{{}}}
+\bibcite{multi_turn_lost}{{4}{}{{}}{{}}}
+\bibcite{anthropic_context}{{5}{}{{}}{{}}}
+\bibcite{sopbench}{{6}{}{{}}{{}}}
+\bibcite{lifelongagentbench}{{7}{}{{}}{{}}}
+\bibcite{realfin}{{8}{}{{}}{{}}}
+\bibcite{mem0}{{9}{}{{}}{{}}}
+\bibcite{locomo}{{10}{}{{}}{{}}}
+\bibcite{webcanvas}{{11}{}{{}}{{}}}
+\bibcite{browsecomp_zh}{{12}{}{{}}{{}}}
+\bibcite{react}{{13}{}{{}}{{}}}
+\bibcite{reflexion}{{14}{}{{}}{{}}}
+\bibcite{autogpt}{{15}{}{{}}{{}}}
+\bibcite{metagpt}{{16}{}{{}}{{}}}
+\bibcite{codeact}{{17}{}{{}}{{}}}
+\bibcite{devin}{{18}{}{{}}{{}}}
+\bibcite{sweagent}{{19}{}{{}}{{}}}
+\bibcite{openhands}{{20}{}{{}}{{}}}
+\bibcite{codex}{{21}{}{{}}{{}}}
+\bibcite{manus}{{22}{}{{}}{{}}}
+\bibcite{memgpt}{{23}{}{{}}{{}}}
+\bibcite{amem}{{24}{}{{}}{{}}}
+\bibcite{longllmlingua}{{25}{}{{}}{{}}}
+\bibcite{selfevolvesurvey}{{26}{}{{}}{{}}}
+\bibcite{agentpro}{{27}{}{{}}{{}}}
+\bibcite{voyager}{{28}{}{{}}{{}}}
+\bibcite{evolver}{{29}{}{{}}{{}}}
+\bibcite{flex}{{30}{}{{}}{{}}}
+\bibcite{agentevolver}{{31}{}{{}}{{}}}
+\bibcite{selfevolvinglifelong}{{32}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Author Contributions}{23}{section.6}\protected@file@percent }
+\newlabel{sec:contributions}{{6}{23}{Author Contributions}{section.6}{}}
+\newlabel{sec:contributions@cref}{{[section][6][]6}{[1][23][]23}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1}Atomic Tool Alignment}{23}{subsection.6.1}\protected@file@percent }
+\newlabel{app:atomic_tool_alignment}{{1}{23}{Atomic Tool Alignment}{subsection.6.1}{}}
+\newlabel{app:atomic_tool_alignment@cref}{{[subsection][1][6]1}{[1][23][]23}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces \textbf  {Capability-level alignment of the basic tooling environment.} Each row maps one capability category to the corresponding tool in Claude Code, OpenClaw, and GA.}}{23}{table.caption.13}\protected@file@percent }
+\newlabel{tab:appendix_tool_alignment}{{9}{23}{\textbf {Capability-level alignment of the basic tooling environment.} Each row maps one capability category to the corresponding tool in Claude Code, OpenClaw, and GA}{table.caption.13}{}}
+\newlabel{tab:appendix_tool_alignment@cref}{{[table][9][]9}{[1][23][]23}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces \textbf  {Representative task-level substitutions from specialized tools to GA atomic-tool compositions.} Each row shows one concrete capability test, the original specialized tool or mechanism used by the baseline system, and the corresponding GA composition that can complete the same class of task.}}{24}{table.caption.14}\protected@file@percent }
+\newlabel{tab:appendix_tool_replacement_examples}{{10}{24}{\textbf {Representative task-level substitutions from specialized tools to GA atomic-tool compositions.} Each row shows one concrete capability test, the original specialized tool or mechanism used by the baseline system, and the corresponding GA composition that can complete the same class of task}{table.caption.14}{}}
+\newlabel{tab:appendix_tool_replacement_examples@cref}{{[table][10][]10}{[1][23][]24}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2}Web Browsing Visualization}{25}{subsection.6.2}\protected@file@percent }
+\newlabel{app:web_browsing_visualization}{{2}{25}{Web Browsing Visualization}{subsection.6.2}{}}
+\newlabel{app:web_browsing_visualization@cref}{{[subsection][2][6]2}{[1][25][]25}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {Token consumption and normalized score across three web browsing benchmarks.} The left axis shows total token consumption in millions (M), while the right axis shows normalized scores on a 0--1 scale. GA consistently achieves competitive or superior performance while consuming significantly fewer tokens than OpenClaw across all three benchmarks.}}{25}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:web_browsing_dual_axis}{{5}{25}{\textbf {Token consumption and normalized score across three web browsing benchmarks.} The left axis shows total token consumption in millions (M), while the right axis shows normalized scores on a 0--1 scale. GA consistently achieves competitive or superior performance while consuming significantly fewer tokens than OpenClaw across all three benchmarks}{figure.caption.15}{}}
+\newlabel{fig:web_browsing_dual_axis@cref}{{[figure][5][]5}{[1][25][]25}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3}Case Studies}{25}{subsection.6.3}\protected@file@percent }
+\newlabel{app:case_studies}{{3}{25}{Case Studies}{subsection.6.3}{}}
+\newlabel{app:case_studies@cref}{{[subsection][3][6]3}{[1][25][]25}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1}Case A1. Tool Use: API Procurement Workflow}{26}{subsubsection.6.3.1}\protected@file@percent }
+\newlabel{app:case_tools}{{3.1}{26}{Case A1. Tool Use: API Procurement Workflow}{subsubsection.6.3.1}{}}
+\newlabel{app:case_tools@cref}{{[subsubsection][1][6,3]3.1}{[1][25][]26}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cross-system comparison on the long-horizon procurement task.}}{27}{table.caption.16}\protected@file@percent }
+\newlabel{tab:appendix_tool_case}{{11}{27}{Cross-system comparison on the long-horizon procurement task}{table.caption.16}{}}
+\newlabel{tab:appendix_tool_case@cref}{{[table][11][]11}{[1][27][]27}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2}Case A2. Memory: Dangerous-Goods Hazard Classification}{27}{subsubsection.6.3.2}\protected@file@percent }
+\newlabel{app:case_memory}{{3.2}{27}{Case A2. Memory: Dangerous-Goods Hazard Classification}{subsubsection.6.3.2}{}}
+\newlabel{app:case_memory@cref}{{[subsubsection][2][6,3]3.2}{[1][27][]27}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3}Case A3. Self-Evolution: GitHub PR Research}{29}{subsubsection.6.3.3}\protected@file@percent }
+\newlabel{app:case_self_evolution}{{3.3}{29}{Case A3. Self-Evolution: GitHub PR Research}{subsubsection.6.3.3}{}}
+\newlabel{app:case_self_evolution@cref}{{[subsubsection][3][6,3]3.3}{[1][29][]29}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4}Case A4. Web Browsing: BrowseComp-ZH Reasoning Chain}{31}{subsubsection.6.3.4}\protected@file@percent }
+\newlabel{app:case_browsing}{{3.4}{31}{Case A4. Web Browsing: BrowseComp-ZH Reasoning Chain}{subsubsection.6.3.4}{}}
+\newlabel{app:case_browsing@cref}{{[subsubsection][4][6,3]3.4}{[1][31][]31}{}{}{}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
 \global\mtcsecondpartfalse
-\gdef \@abspage@last{29}
+\gdef \@abspage@last{32}
